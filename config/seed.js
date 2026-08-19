@@ -19,8 +19,17 @@ module.exports = async function seed() {
   if (!await Account.findOne({email:"hr@viettravel.vn"})) await new Account({fullName:"Nguyễn Minh Anh",email:"hr@viettravel.vn",phone:"0909000002",role:hrRole._id,positionCompany:"Chuyên viên nhân sự",password:await bcrypt.hash("Hr@123456",10),status:"active"}).save();
   const cityNames=["Hà Nội","TP. Hồ Chí Minh","Đà Nẵng","Đà Lạt","Phú Quốc"];
   for(const name of cityNames) if(!await City.findOne({name})) await new City({name}).save();
-  let category=await Category.findOne({name:"Tour trong nước"}); if(!category){category=new Category({name:"Tour trong nước",position:1,status:"active"});await category.save();}
-  if(await Tour.countDocuments({})===0){const cities=await City.find({});const tourSeeds=[
+  let category=await Category.findOne({name:"Tour trong nước"});
+  if(!category){
+    category=new Category({name:"Tour trong nước",position:1,status:"active",avatar:"/assets/images/tours/da-nang-hoi-an.jpg"});
+    await category.save();
+  } else if (!category.avatar) {
+    category.avatar="/assets/images/tours/da-nang-hoi-an.jpg";
+    await category.save();
+  }
+  // Seed domestic tours independently. International tours are created first,
+  // so checking the total tour count would incorrectly skip this category.
+  if(await Tour.countDocuments({category:category._id})===0){const cities=await City.find({});const tourSeeds=[
     {name:"Khám phá Phú Quốc",image:"phu-quoc.jpg"},
     {name:"Đà Nẵng - Hội An",image:"da-nang-hoi-an.jpg"},
     {name:"Hà Nội - Hạ Long",image:"ha-noi-ha-long.jpg"},
