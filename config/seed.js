@@ -41,8 +41,22 @@ module.exports = async function seed() {
     {name:"Sapa mùa mây",image:"sapa.jpg"}
   ];for(let i=0;i<tourSeeds.length;i++){const image=`/assets/images/tours/${tourSeeds[i].image}`;await new Tour({name:tourSeeds[i].name,category:category._id,position:i+1,status:"active",avatar:image,priceAdult:5000000+i*300000,priceChildren:3500000,priceBaby:1000000,priceNewAdult:4500000+i*300000,priceNewChildren:3200000,priceNewBaby:900000,stockAdult:20,stockChildren:10,stockBaby:5,locations:cities.slice(0,2).map(c=>c._id),time:"3 ngày 2 đêm",vehicle:"Máy bay",departureDate:new Date(Date.now()+(i+5)*86400000).toISOString(),information:"Hành trình trọn gói cùng VietTravel, dịch vụ tận tâm và lịch trình hấp dẫn.",schedules:[],images:[image]}).save();}}
   const jobSeeds = [
-    { title:"Nhân viên điều hành tour", slug:"nhan-vien-dieu-hanh-tour", department:"Phòng Điều hành", location:"TP. Hồ Chí Minh", quantity:2 },
-    { title:"Nhân viên Sale tour", slug:"nhan-vien-sale-tour", department:"Phòng Kinh doanh", location:"TP. Hồ Chí Minh", quantity:3 }
+    {
+      title:"Nhân viên Điều hành Tour", slug:"nhan-vien-dieu-hanh-tour", department:"Phòng Điều hành", location:"TP. Hồ Chí Minh", quantity:1,
+      supervisor:"Trưởng nhóm/Trưởng bộ phận Điều hành",
+      jobDescription:"Tiếp nhận thông tin chương trình tour, tổ chức và điều phối các dịch vụ cần thiết nhằm đảm bảo tour được thực hiện đúng lịch trình, chất lượng và yêu cầu của khách hàng. Phối hợp với nhà cung cấp, hướng dẫn viên và các bộ phận liên quan để theo dõi, xử lý các vấn đề phát sinh trong quá trình thực hiện tour.",
+      responsibilities:["Tiếp nhận thông tin tour từ bộ phận Kinh doanh Tour; kiểm tra lịch trình và kế hoạch thực hiện.","Liên hệ, đặt và xác nhận phương tiện vận chuyển, khách sạn, nhà hàng, vé tham quan và hướng dẫn viên.","Chuẩn bị booking, danh sách khách, lịch trình và thông tin dịch vụ trước ngày khởi hành.","Phối hợp với hướng dẫn viên, nhà cung cấp và các bộ phận liên quan; theo dõi tour và cập nhật tình hình.","Xử lý thay đổi lịch trình, dịch vụ hoặc yêu cầu phát sinh của khách hàng.","Kiểm tra chi phí, hóa đơn; đối soát, quyết toán và tiếp nhận phản hồi sau tour.","Báo cáo tình hình thực hiện tour và thực hiện nhiệm vụ khác theo yêu cầu của cấp trên."],
+      requirements:["Tốt nghiệp Cao đẳng/Đại học; ưu tiên ngành Du lịch, Quản trị dịch vụ du lịch và lữ hành hoặc ngành liên quan.","Hiểu quy trình điều hành tour, xây dựng chương trình, đặt và kiểm soát dịch vụ; có kiến thức cơ bản về quản lý chi phí tour.","Ưu tiên có kinh nghiệm điều hành tour hoặc vận hành dịch vụ du lịch; chấp nhận ứng viên mới tốt nghiệp có thực tập phù hợp.","Có kỹ năng lập kế hoạch, tổ chức, điều phối, giao tiếp, xử lý tình huống, quản lý thời gian và kiểm soát thông tin.","Có khả năng giao tiếp tiếng Anh cơ bản; ngoại ngữ tốt là một lợi thế.","Trung thực, trách nhiệm, chủ động, cẩn thận, linh hoạt, làm việc nhóm tốt và chịu được áp lực."],
+      workEnvironment:["Làm việc chủ yếu tại văn phòng Vietravel và thường xuyên phối hợp với nhà cung cấp, hướng dẫn viên, các bộ phận liên quan.","Sử dụng máy tính, điện thoại, email và các công cụ hỗ trợ điều hành tour.","Có thể làm việc ngoài giờ khi tour đang diễn ra hoặc có tình huống phát sinh; khối lượng công việc tăng vào mùa cao điểm."]
+    },
+    {
+      title:"Nhân viên Kinh doanh Tour – Sales Tour", slug:"nhan-vien-sale-tour", department:"Phòng Kinh doanh", location:"TP. Hồ Chí Minh", quantity:1,
+      supervisor:"Trưởng nhóm/Trưởng phòng Kinh doanh",
+      jobDescription:"Tìm kiếm và tiếp cận khách hàng có nhu cầu du lịch, tư vấn các chương trình tour phù hợp, thực hiện hoạt động bán tour và chăm sóc khách hàng nhằm hoàn thành chỉ tiêu kinh doanh và đảm bảo chất lượng phục vụ.",
+      responsibilities:["Tìm kiếm, tiếp cận khách hàng tiềm năng; tiếp nhận và tìm hiểu nhu cầu, ngân sách của khách hàng.","Tư vấn chương trình tour, lịch trình, giá và các dịch vụ liên quan; báo giá và giải đáp thắc mắc.","Hỗ trợ khách hàng đăng ký tour, thực hiện thủ tục, đặt cọc và thanh toán.","Theo dõi, chăm sóc khách hàng trước, trong và sau chuyến đi; tiếp nhận phản hồi và phối hợp xử lý phát sinh.","Phối hợp với điều hành tour, kế toán, marketing và các bộ phận liên quan.","Cập nhật thông tin khách hàng, báo cáo kết quả kinh doanh và thực hiện chỉ tiêu doanh số."],
+      requirements:["Tốt nghiệp Cao đẳng/Đại học; ưu tiên ngành Du lịch, Quản trị dịch vụ du lịch và lữ hành, Quản trị kinh doanh, Marketing hoặc ngành liên quan.","Có kiến thức cơ bản về tuyến điểm, chương trình tour, dịch vụ lữ hành, quy trình tư vấn, bán tour và chăm sóc khách hàng.","Ưu tiên có kinh nghiệm kinh doanh, tư vấn, chăm sóc khách hàng hoặc du lịch - lữ hành.","Giao tiếp, lắng nghe, tư vấn, thuyết phục và xử lý tình huống tốt; biết làm việc nhóm, quản lý thời gian và sử dụng tin học văn phòng.","Có khả năng giao tiếp tiếng Anh cơ bản; tiếng Anh giao tiếp tốt là một lợi thế.","Trung thực, trách nhiệm, chủ động, năng động, cẩn thận, kiên nhẫn, có tinh thần phục vụ và chịu được áp lực doanh số."],
+      workEnvironment:["Làm việc chủ yếu tại văn phòng hoặc điểm giao dịch Vietravel; trao đổi với khách hàng trực tiếp, qua điện thoại, email và các kênh trực tuyến.","Sử dụng máy tính và các công cụ hỗ trợ bán hàng; có thể gặp khách bên ngoài hoặc tham gia sự kiện du lịch.","Công việc chịu áp lực doanh số và có thể tăng khối lượng vào mùa cao điểm du lịch."]
+    }
   ];
   const allowedJobTitles = new Set(jobSeeds.map(item => item.title));
   for (const job of await Job.find({})) {
@@ -52,17 +66,11 @@ module.exports = async function seed() {
     const item=jobSeeds[i];
     let job=await Job.findOne({title:item.title});
     if (!job) job=new Job({title:item.title});
-    Object.assign(job,item,{
-        jobDescription:`Tư vấn và thực hiện các công việc của vị trí ${item.title}, phối hợp cùng các phòng ban để phục vụ khách hàng.`,
-        requirements:"Giao tiếp tốt, chủ động, có tinh thần trách nhiệm và yêu thích lĩnh vực du lịch.",
-        benefits:"Thu nhập cạnh tranh; thưởng hiệu quả; bảo hiểm đầy đủ; ưu đãi tour dành cho nhân viên.",
-        deadline:new Date(Date.now()+(20+i*5)*86400000).toISOString().slice(0,10),
-        status:"active"
-    });
+    Object.assign(job,item,{deadline:"2026-09-30",status:"active"});
     await job.save();
   }
-  const operationsJob = await Job.findOne({title:"Nhân viên điều hành tour"});
-  const salesJob = await Job.findOne({title:"Nhân viên Sale tour"});
+  const operationsJob = await Job.findOne({title:"Nhân viên Điều hành Tour"});
+  const salesJob = await Job.findOne({title:"Nhân viên Kinh doanh Tour – Sales Tour"});
   const applicationSeeds = [
     {
       fullName:"Trần Hoàng Anh", email:"tranhoanganh2208@gmail.com", phone:"0377 972 347",
@@ -90,8 +98,11 @@ module.exports = async function seed() {
     }
   ];
   for (const item of applicationSeeds) {
-    if (!item.job || await Application.findOne({email:item.email,cvPath:item.cvPath})) continue;
+    if (!item.job) continue;
     const {job,...candidate}=item;
-    await new Application({...candidate,jobId:job._id,jobTitle:job.title,status:"new"}).save();
+    let application=await Application.findOne({email:item.email,cvPath:item.cvPath});
+    if (!application) application=new Application({status:"new"});
+    Object.assign(application,candidate,{jobId:job._id,jobTitle:job.title});
+    await application.save();
   }
 };

@@ -19,10 +19,26 @@ block main
               |  Hạn nộp: #{job.deadline}
           h2 Mô tả công việc
           p #{job.jobDescription}
+          if job.responsibilities && job.responsibilities.length
+            h2 Nhiệm vụ và trách nhiệm
+            ul.job-description-list
+              each item in job.responsibilities
+                li #{item}
           h2 Yêu cầu
-          p #{job.requirements}
-          h2 Quyền lợi
-          p #{job.benefits}
+          if Array.isArray(job.requirements)
+            ul.job-description-list
+              each item in job.requirements
+                li #{item}
+          else
+            p #{job.requirements}
+          if job.supervisor
+            h2 Quản lý trực tiếp
+            p #{job.supervisor}
+          if job.workEnvironment && job.workEnvironment.length
+            h2 Môi trường làm việc
+            ul.job-description-list
+              each item in job.workEnvironment
+                li #{item}
         aside.apply-card
           h2 Ứng tuyển ngay
           p VietTravel sẽ liên hệ với hồ sơ phù hợp.
