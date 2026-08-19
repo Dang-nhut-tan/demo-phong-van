@@ -1,0 +1,19 @@
+extends layout.pug
+block publicContent
+  .hr-login
+    .hr-login-card
+      a.hr-brand(href="/")
+        span Viet
+        | Travel
+        small  HR
+      h1 Đăng nhập Nhân sự
+      p Quản lý tuyển dụng và hồ sơ ứng viên
+      if error
+        .hr-error #{error}
+      form(method="post",action="/hr/login")
+        label Email
+        input(type="email",name="email",required,value="hr@viettravel.vn")
+        label Mật khẩu
+        input(type="password",name="password",required,value="Hr@123456")
+        button(type="submit") Đăng nhập
+      .hr-demo Tài khoản demo đã được điền sẵn

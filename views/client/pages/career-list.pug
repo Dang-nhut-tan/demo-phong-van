@@ -1,0 +1,31 @@
+extends ../layouts/default.pug
+block main
+  section.career-hero
+    .container
+      span.career-kicker CƠ HỘI NGHỀ NGHIỆP
+      h1 Đồng hành cùng VietTravel
+      p Cùng kiến tạo những hành trình đáng nhớ và phát triển sự nghiệp trong môi trường du lịch năng động.
+  section.career-section
+    .container
+      .career-heading
+        div
+          h2 Vị trí đang tuyển
+          p #{jobs.length} cơ hội dành cho bạn
+      .job-grid
+        each job in jobs
+          article.job-card
+            .job-card-top
+              span.job-department #{job.department}
+              span.job-location
+                i.fa-solid.fa-location-dot
+                |  #{job.location}
+            h3
+              a(href=`/tuyen-dung/${job.slug}`) #{job.title}
+            .job-meta
+              span
+                i.fa-solid.fa-users
+                |  #{job.quantity} người
+              span
+                i.fa-regular.fa-calendar
+                |  Hạn: #{job.deadline}
+            a.job-button(href=`/tuyen-dung/${job.slug}`) Xem chi tiết

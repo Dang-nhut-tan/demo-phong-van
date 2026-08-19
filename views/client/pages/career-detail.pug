@@ -1,0 +1,38 @@
+extends ../layouts/default.pug
+block main
+  section.career-section
+    .container
+      a.career-back(href="/tuyen-dung") ← Tất cả vị trí
+      .job-detail
+        .job-content
+          span.job-department #{job.department}
+          h1 #{job.title}
+          .job-meta
+            span
+              i.fa-solid.fa-location-dot
+              |  #{job.location}
+            span
+              i.fa-solid.fa-users
+              |  Số lượng: #{job.quantity}
+            span
+              i.fa-regular.fa-calendar
+              |  Hạn nộp: #{job.deadline}
+          h2 Mô tả công việc
+          p #{job.jobDescription}
+          h2 Yêu cầu
+          p #{job.requirements}
+          h2 Quyền lợi
+          p #{job.benefits}
+        aside.apply-card
+          h2 Ứng tuyển ngay
+          p VietTravel sẽ liên hệ với hồ sơ phù hợp.
+          form(method="post",action=`/tuyen-dung/${job._id}/apply`,enctype="multipart/form-data")
+            label Họ và tên
+            input(type="text",name="fullName",required,placeholder="Nguyễn Văn A")
+            label Email
+            input(type="email",name="email",required,placeholder="email@example.com")
+            label Số điện thoại
+            input(type="tel",name="phone",required,pattern="[0-9+ ]{9,15}",placeholder="0901 234 567")
+            label CV (chỉ PDF, tối đa 5MB)
+            input(type="file",name="cv",accept="application/pdf,.pdf",required)
+            button(type="submit") Nộp hồ sơ

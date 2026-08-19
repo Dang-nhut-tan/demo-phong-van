@@ -1,0 +1,106 @@
+extends ../layouts/default.pug
+
+block main
+  section.about-hero
+    .container
+      .about-hero-content
+        span.about-eyebrow CÔNG TY CỔ PHẦN DU LỊCH VIETRAVEL
+        h1 Hành trình kết nối, kiến tạo trải nghiệm
+        p Hơn ba thập kỷ đồng hành cùng du khách bằng sản phẩm đa dạng, dịch vụ tận tâm và đội ngũ nhân sự chuyên nghiệp.
+        a.about-primary-button(href="/tuyen-dung") Gia nhập VietTravel
+      .about-hero-image
+        img(src="/assets/images/banner-6.jpg",alt="Hành trình du lịch cùng VietTravel")
+        .about-year-card
+          strong 1995
+          span Năm thành lập
+
+  section.about-intro
+    .container
+      .about-section-heading
+        span VỀ CHÚNG TÔI
+        h2 Khái quát về Vietravel
+      .about-intro-grid
+        .about-copy
+          p Công ty Cổ phần Du lịch Vietravel là một trong những doanh nghiệp hoạt động lâu năm trong lĩnh vực du lịch – lữ hành tại Việt Nam. Từ quy mô nhân sự ban đầu còn hạn chế, Vietravel từng bước mở rộng mạng lưới, xây dựng thương hiệu và phục vụ nhiều nhóm khách hàng khác nhau.
+          p Hoạt động kinh doanh tập trung vào tour trong nước, tour quốc tế, khách lẻ, khách đoàn và các chương trình được thiết kế theo nhu cầu. Hệ sinh thái dịch vụ liên quan giúp khách hàng có một hành trình thuận tiện và trọn vẹn.
+        .about-facts
+          .about-fact
+            i.fa-solid.fa-calendar-check
+            strong 30+ năm
+            span Kinh nghiệm trong ngành du lịch
+          .about-fact
+            i.fa-solid.fa-map-location-dot
+            strong Toàn quốc
+            span Mạng lưới tại nhiều tỉnh, thành phố
+          .about-fact
+            i.fa-solid.fa-route
+            strong Đa dạng
+            span Tour trong nước và quốc tế
+          .about-fact
+            i.fa-solid.fa-users
+            strong Tận tâm
+            span Phục vụ nhiều nhóm khách hàng
+
+  section.about-services
+    .container
+      .about-section-heading.center
+        span LĨNH VỰC HOẠT ĐỘNG
+        h2 Giải pháp du lịch cho mọi hành trình
+        p VietTravel đáp ứng nhu cầu của cá nhân, gia đình, doanh nghiệp và tổ chức bằng các sản phẩm linh hoạt.
+      .about-card-grid
+        each service in [{icon:'fa-umbrella-beach',title:'Tour trong nước',text:'Khám phá điểm đến Việt Nam với lịch trình phong phú và dịch vụ đồng bộ.'},{icon:'fa-earth-asia',title:'Tour quốc tế',text:'Hành trình đến nhiều quốc gia, được tư vấn và hỗ trợ xuyên suốt chuyến đi.'},{icon:'fa-people-group',title:'Khách đoàn',text:'Chương trình thiết kế theo nhu cầu của doanh nghiệp, tổ chức và tập thể.'},{icon:'fa-headset',title:'Dịch vụ hỗ trợ',text:'Tư vấn, đăng ký và chăm sóc khách hàng trước, trong và sau hành trình.'}]
+          article.about-info-card
+            i(class=`fa-solid ${service.icon}`)
+            h3 #{service.title}
+            p #{service.text}
+
+  section.about-people
+    .container
+      .about-people-grid
+        .about-people-image
+          img(src="/assets/images/banner-7.jpg",alt="Con người và văn hóa VietTravel")
+        .about-people-content
+          span.about-eyebrow CON NGƯỜI & VĂN HÓA
+          h2 Nhân sự tạo nên chất lượng dịch vụ
+          p Trong ngành du lịch – lữ hành, con người ảnh hưởng trực tiếp đến trải nghiệm khách hàng. VietTravel đề cao tinh thần năng động, chủ động, trách nhiệm và khả năng phối hợp trong công việc.
+          ul.about-values
+            each value in [{title:'Tận tâm phục vụ',text:'Lắng nghe và nhanh chóng đáp ứng nhu cầu khách hàng.'},{title:'Chủ động thích nghi',text:'Bình tĩnh xử lý thay đổi trong môi trường biến động cao.'},{title:'Phối hợp trách nhiệm',text:'Đồng hành cùng đồng nghiệp và đối tác để đảm bảo chất lượng tour.'},{title:'Không ngừng học hỏi',text:'Phát triển chuyên môn, công nghệ và kỹ năng phục vụ.'}]
+              li
+                i.fa-solid.fa-circle-check
+                div
+                  strong #{value.title}
+                  span #{value.text}
+
+  section.about-roles
+    .container
+      .about-section-heading.center
+        span NHÂN SỰ TRỌNG TÂM
+        h2 Hai vị trí tạo nên hành trình trọn vẹn
+      .about-role-grid
+        article.about-role-card
+          .about-role-icon
+            i.fa-solid.fa-handshake
+          div
+            h3 Nhân viên Kinh doanh Tour – Sales Tour
+            p Trực tiếp tìm kiếm khách hàng, tìm hiểu nhu cầu, tư vấn chương trình, báo giá, hỗ trợ đăng ký và chăm sóc khách hàng xuyên suốt hành trình.
+            .about-skill-list
+              each skill in ['Giao tiếp','Lắng nghe','Thuyết phục','Chịu áp lực']
+                span #{skill}
+        article.about-role-card
+          .about-role-icon
+            i.fa-solid.fa-clipboard-list
+          div
+            h3 Nhân viên Điều hành Tour
+            p Phối hợp với hướng dẫn viên, khách sạn, nhà hàng, vận chuyển và nhà cung cấp để chương trình diễn ra đúng kế hoạch, đồng thời xử lý tình huống phát sinh.
+            .about-skill-list
+              each skill in ['Tổ chức','Cẩn thận','Phối hợp','Xử lý vấn đề']
+                span #{skill}
+
+  section.about-recruitment
+    .container
+      .about-recruitment-box
+        .about-recruitment-copy
+          span CƠ HỘI NGHỀ NGHIỆP
+          h2 Cùng VietTravel tạo nên những hành trình đáng nhớ
+          p Chúng tôi tìm kiếm ứng viên vừa đáp ứng chuyên môn, vừa phù hợp với văn hóa phục vụ khách hàng.
+        a.about-secondary-button(href="/tuyen-dung") Xem vị trí đang tuyển

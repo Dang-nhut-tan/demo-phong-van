@@ -1,0 +1,32 @@
+extends layout.pug
+block content
+  .panel
+    .panel-head
+      div
+        h2 Danh sách tin tuyển dụng
+        p #{jobs.length} tin trong hệ thống
+      a.btn(href="/hr/tin-tuyen-dung/tao") + Đăng tin mới
+    table
+      thead
+        tr
+          th Vị trí
+          th Phòng ban
+          th Số lượng
+          th Hạn nộp
+          th Trạng thái
+          th Thao tác
+      tbody
+        each job in jobs
+          tr
+            td
+              strong #{job.title}
+              small #{job.location}
+            td #{job.department}
+            td #{job.quantity}
+            td #{job.deadline}
+            td
+              span(class=`badge badge-${job.status}`) #{job.status==='active'?'Đang tuyển':job.status==='inactive'?'Đang ẩn':'Đã đóng'}
+            td.actions
+              a.table-link(href=`/hr/tin-tuyen-dung/${job._id}/sua`) Sửa
+              form(method="post",action=`/hr/tin-tuyen-dung/${job._id}/xoa`,onsubmit="return confirm('Xóa tin này?')")
+                button.link-danger(type="submit") Xóa

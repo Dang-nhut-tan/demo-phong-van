@@ -1,0 +1,32 @@
+extends layout.pug
+block content
+  .filter-row
+    a(class=!status?'active':'',href="/hr/ung-vien") Tất cả
+    each item in [{v:'new',l:'Mới nhận'},{v:'screening',l:'Sàng lọc'},{v:'interview',l:'Phỏng vấn'},{v:'passed',l:'Đạt'},{v:'rejected',l:'Không đạt'},{v:'hired',l:'Nhận việc'}]
+      a(class=status===item.v?'active':'',href=`/hr/ung-vien?status=${item.v}`) #{item.l}
+  .panel
+    table
+      thead
+        tr
+          th Ứng viên
+          th Vị trí ứng tuyển
+          th Liên hệ
+          th Trạng thái
+          th
+      tbody
+        each app in applications
+          tr
+            td
+              strong #{app.fullName}
+              small Nộp: #{String(app.createdAt).slice(0,10)}
+            td #{app.jobTitle}
+            td
+              div #{app.email}
+              small #{app.phone}
+            td
+              span(class=`badge badge-${app.status}`) #{app.status}
+            td
+              a.table-link(href=`/hr/ung-vien/${app._id}`) Xem hồ sơ
+        if !applications.length
+          tr
+            td.empty(colspan="5") Chưa có hồ sơ ở trạng thái này.

@@ -1,0 +1,27 @@
+extends layout.pug
+block content
+  .stat-grid
+    .stat-card
+      i.fa-solid.fa-briefcase
+      div
+        strong #{jobs.length}
+        span Tổng tin tuyển dụng
+    .stat-card
+      i.fa-solid.fa-users
+      div
+        strong #{apps.length}
+        span Tổng ứng viên
+    .stat-card
+      i.fa-solid.fa-percent
+      div
+        strong #{apps.length?Math.round(statuses.find(x=>x.value==='hired').count/apps.length*100):0}%
+        span Tỷ lệ nhận việc
+  .panel
+    h2 Phễu tuyển dụng
+    .funnel
+      each item in statuses
+        .funnel-row
+          span #{({new:'Mới nhận',screening:'Sàng lọc',interview:'Phỏng vấn',passed:'Đạt',rejected:'Không đạt',hired:'Nhận việc'})[item.value]}
+          .funnel-track
+            .funnel-bar(style=`width:${apps.length?Math.max(3,item.count/apps.length*100):0}%`)
+          strong #{item.count}

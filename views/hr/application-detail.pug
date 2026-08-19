@@ -1,0 +1,62 @@
+extends layout.pug
+block content
+  .detail-grid
+    .panel
+      .candidate-head
+        .candidate-avatar #{application.fullName.charAt(0)}
+        div
+          h2 #{application.fullName}
+          p Ứng tuyển #{application.jobTitle}
+      dl.info-list
+        dt Email
+        dd #{application.email}
+        dt Số điện thoại
+        dd #{application.phone}
+        dt Ngày nộp
+        dd #{String(application.createdAt).slice(0,10)}
+      .cv-actions
+        a.btn(target="_blank",href=application.cvPath)
+          i.fa-solid.fa-expand
+          |  Mở toàn màn hình
+        a.btn.btn-light(download=application.cvOriginalName,href=application.cvPath)
+          i.fa-solid.fa-download
+          |  Tải CV
+      hr
+      h3 Cập nhật quy trình
+      form.inline-form(method="post",action=`/hr/ung-vien/${application._id}/trang-thai`)
+        select(name="status")
+          each item in [{v:'new',l:'Mới nhận'},{v:'screening',l:'Đang sàng lọc'},{v:'interview',l:'Mời phỏng vấn'},{v:'passed',l:'Đạt'},{v:'rejected',l:'Không đạt'},{v:'hired',l:'Đã nhận việc'}]
+            option(value=item.v,selected=application.status===item.v) #{item.l}
+        button.btn(type="submit") Cập nhật
+    .panel
+      h2 Lịch phỏng vấn
+      if interview
+        .interview-note
+          strong Đã lên lịch: #{interview.date} lúc #{interview.time}
+          p #{interview.mode==='online'?'Trực tuyến':'Trực tiếp'} — #{interview.location}
+          p Người phỏng vấn: #{interview.interviewer}
+      form.form-stack(method="post",action=`/hr/ung-vien/${application._id}/phong-van`)
+        label Ngày phỏng vấn
+        input(type="date",name="date",required,value=interview&&interview.date)
+        label Giờ
+        input(type="time",name="time",required,value=interview&&interview.time)
+        label Hình thức
+        select(name="mode")
+          option(value="offline",selected=interview&&interview.mode==='offline') Trực tiếp
+          option(value="online",selected=interview&&interview.mode==='online') Online
+        label Địa điểm / đường dẫn họp
+        input(type="text",name="location",required,value=interview&&interview.location)
+        label Người phỏng vấn
+        input(type="text",name="interviewer",required,value=interview&&interview.interviewer)
+        label Ghi chú
+        textarea(name="note",rows="3") #{interview&&interview.note}
+        button.btn(type="submit") #{interview?'Cập nhật lịch':'Tạo lịch phỏng vấn'}
+  .panel.cv-panel
+    .panel-head
+      div
+        h2 CV của #{application.fullName}
+        p Xem trực tiếp hồ sơ PDF ngay trên hệ thống
+    iframe.cv-viewer(src=`${application.cvPath}#toolbar=1&navpanes=0&view=FitH`,title=`CV của ${application.fullName}`)
+    p.cv-fallback
+      | Nếu trình duyệt không hiển thị PDF, 
+      a.table-link(target="_blank",href=application.cvPath) mở CV trong tab mới.

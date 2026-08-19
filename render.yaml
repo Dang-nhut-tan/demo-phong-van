@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: viettravel-demo
+    runtime: node
+    plan: free
+    buildCommand: yarn install --frozen-lockfile
+    startCommand: yarn start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: JWT_SECRET
+        generateValue: true

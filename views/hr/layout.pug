@@ -1,0 +1,49 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    title #{pageTitle}
+    link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css")
+    link(rel="stylesheet",href="/hr-assets/style.css")
+  body
+    if hrAccount
+      .hr-shell
+        aside.hr-sidebar
+          a.hr-brand(href="/hr")
+            span Viet
+            | Travel
+            small  HR
+          nav
+            a(href="/hr")
+              i.fa-solid.fa-chart-line
+              | Tổng quan
+            a(href="/hr/tin-tuyen-dung")
+              i.fa-solid.fa-briefcase
+              | Tin tuyển dụng
+            a(href="/hr/ung-vien")
+              i.fa-solid.fa-user-group
+              | Hồ sơ ứng viên
+            a(href="/hr/thong-ke")
+              i.fa-solid.fa-chart-pie
+              | Thống kê
+            a(href="/",target="_blank")
+              i.fa-solid.fa-globe
+              | Xem website
+          form.hr-logout(method="post",action="/hr/logout")
+            button(type="submit")
+              i.fa-solid.fa-right-from-bracket
+              | Đăng xuất
+        main.hr-main
+          header.hr-header
+            div
+              h1 #{pageTitle}
+              p Quản trị tuyển dụng VietTravel
+            .hr-user
+              .hr-avatar #{hrAccount.fullName.charAt(0)}
+              div
+                strong #{hrAccount.fullName}
+                small #{hrAccount.positionCompany}
+          block content
+    else
+      block publicContent

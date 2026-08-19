@@ -1,0 +1,48 @@
+extends layout.pug
+block content
+  .stat-grid
+    .stat-card
+      i.fa-solid.fa-briefcase
+      div
+        strong #{counts.jobs}
+        span Tin đang tuyển
+    .stat-card
+      i.fa-solid.fa-file-lines
+      div
+        strong #{counts.applications}
+        span Tổng hồ sơ
+    .stat-card
+      i.fa-solid.fa-envelope-open
+      div
+        strong #{counts.newApplications}
+        span Hồ sơ mới
+    .stat-card
+      i.fa-solid.fa-calendar-check
+      div
+        strong #{counts.interviews}
+        span Lịch phỏng vấn
+  .panel
+    .panel-head
+      h2 Hồ sơ mới nhất
+      a.btn.btn-light(href="/hr/ung-vien") Xem tất cả
+    if recent.length
+      table
+        thead
+          tr
+            th Ứng viên
+            th Vị trí
+            th Trạng thái
+            th
+        tbody
+          each app in recent
+            tr
+              td
+                strong #{app.fullName}
+                small #{app.email}
+              td #{app.jobTitle}
+              td
+                span(class=`badge badge-${app.status}`) #{app.status}
+              td
+                a.table-link(href=`/hr/ung-vien/${app._id}`) Chi tiết
+    else
+      .empty Chưa có hồ sơ. Hãy thử nộp một CV từ trang Tuyển dụng.

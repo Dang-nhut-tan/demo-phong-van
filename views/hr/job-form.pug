@@ -1,0 +1,36 @@
+extends layout.pug
+block content
+  form.panel.form-grid(method="post",action=job?`/hr/tin-tuyen-dung/${job._id}/sua`:"/hr/tin-tuyen-dung/tao")
+    .span-2
+      label Chức danh
+      input(type="text",name="title",required,value=job&&job.title)
+    div
+      label Phòng ban
+      input(type="text",name="department",required,value=job&&job.department)
+    div
+      label Địa điểm
+      input(type="text",name="location",required,value=job&&job.location)
+    div
+      label Số lượng
+      input(type="number",name="quantity",min="1",required,value=job?job.quantity:1)
+    div
+      label Hạn nộp
+      input(type="date",name="deadline",required,value=job&&job.deadline)
+    .span-2
+      label Mô tả công việc (JD)
+      textarea(name="jobDescription",rows="5",required) #{job&&job.jobDescription}
+    .span-2
+      label Yêu cầu
+      textarea(name="requirements",rows="4",required) #{job&&job.requirements}
+    .span-2
+      label Quyền lợi
+      textarea(name="benefits",rows="4",required) #{job&&job.benefits}
+    div
+      label Trạng thái
+      select(name="status")
+        option(value="active",selected=job&&job.status==='active') Đang tuyển
+        option(value="inactive",selected=job&&job.status==='inactive') Tạm ẩn
+        option(value="closed",selected=job&&job.status==='closed') Đã đóng
+    .span-2.form-actions
+      a.btn.btn-light(href="/hr/tin-tuyen-dung") Hủy
+      button.btn(type="submit") Lưu tin tuyển dụng
