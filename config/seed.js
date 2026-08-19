@@ -6,6 +6,7 @@ const City = require("../models/city.model");
 const Category = require("../models/category.model");
 const Tour = require("../models/tour.model");
 const Job = require("../models/job.model");
+const Application = require("../models/application.model");
 const seedInternationalTours = require("./seed-international");
 
 module.exports = async function seed() {
@@ -57,5 +58,38 @@ module.exports = async function seed() {
       deadline:new Date(Date.now()+(20+i*5)*86400000).toISOString().slice(0,10),
       status:"active"
     }).save();
+  }
+  const operationsJob = await Job.findOne({title:"Nhân viên điều hành tour"});
+  const salesJob = await Job.findOne({title:"Nhân viên Sale tour"});
+  const applicationSeeds = [
+    {
+      fullName:"Trần Hoàng Anh", email:"tranhoanganh2208@gmail.com", phone:"0377 972 347",
+      address:"Số 77 Bạch Đằng, TP. Hồ Chí Minh", job:operationsJob,
+      cvPath:"/demo-cv/CV ỨNg Viên A (2).pdf", cvOriginalName:"CV Trần Hoàng Anh.pdf",
+      profileSummary:"3 năm kinh nghiệm điều hành tour; hiện là trưởng nhóm tại Apex Travel; IELTS 7.0, HSK 5; tốt nghiệp Quản trị dịch vụ du lịch và lữ hành, GPA 3.7/4.0."
+    },
+    {
+      fullName:"Nguyễn Minh Khang", email:"nguyenminhkhang2004@gmail.com", phone:"0377 077 277",
+      address:"Số 123 Cô Giang, TP. Hồ Chí Minh", job:operationsJob,
+      cvPath:"/demo-cv/CV Ứng Viên B (1).pdf", cvOriginalName:"CV Nguyễn Minh Khang.pdf",
+      profileSummary:"Sinh viên Quản trị Du lịch và Lữ hành, GPA 3.5/4; từng thực tập điều hành tour Đà Nẵng - Hội An - Huế; IELTS 8.0 và MOS."
+    },
+    {
+      fullName:"Nguyễn Thị Hồng Nhung", email:"hongnhung.sale97@gmail.com", phone:"0908 666 345",
+      dateOfBirth:"20/10/1997", address:"Quận Tân Bình, TP. Hồ Chí Minh", job:salesJob,
+      cvPath:"/demo-cv/CV ỨNG VIÊN C.pdf", cvOriginalName:"CV Nguyễn Thị Hồng Nhung.pdf",
+      profileSummary:"5 năm kinh nghiệm tư vấn và kinh doanh tour; đạt trung bình 118% KPI, doanh thu khoảng 850 triệu đồng/quý; IELTS 6.0, HSK 3."
+    },
+    {
+      fullName:"Trần Hoàng Diệu", email:"hoangdieu.tran99@gmail.com", phone:"0937 080 812",
+      dateOfBirth:"23/06/1999", address:"Quận Bình Thạnh, TP. Hồ Chí Minh", job:salesJob,
+      cvPath:"/demo-cv/CV ỨNG VIÊN D.pdf", cvOriginalName:"CV Trần Hoàng Diệu.pdf",
+      profileSummary:"1,5 năm kinh nghiệm kinh doanh và chăm sóc khách hàng; từng đạt 120% chỉ tiêu trong 3 quý liên tiếp; có kỹ năng telesale và quản lý khách hàng qua CRM."
+    }
+  ];
+  for (const item of applicationSeeds) {
+    if (!item.job || await Application.findOne({email:item.email,cvPath:item.cvPath})) continue;
+    const {job,...candidate}=item;
+    await new Application({...candidate,jobId:job._id,jobTitle:job.title,status:"new"}).save();
   }
 };

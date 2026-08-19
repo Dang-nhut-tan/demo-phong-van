@@ -23,6 +23,8 @@ app.set('view engine', 'pug');
 
 // Thiết lập thư mục chứa file tĩnh của Frontend
 app.use(express.static(path.join(__dirname, "public")));
+// CV mẫu được lưu cùng source để luôn tồn tại trên Render Free.
+app.use("/demo-cv", express.static(path.join(__dirname, "CV")));
 
 // Tạo biến toàn cục trong file PUG
 app.locals.pathAdmin = variableConfig.pathAdmin;

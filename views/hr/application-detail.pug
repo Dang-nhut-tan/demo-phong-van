@@ -12,8 +12,17 @@ block content
         dd #{application.email}
         dt Số điện thoại
         dd #{application.phone}
+        if application.dateOfBirth
+          dt Ngày sinh
+          dd #{application.dateOfBirth}
+        if application.address
+          dt Địa chỉ
+          dd #{application.address}
         dt Ngày nộp
         dd #{String(application.createdAt).slice(0,10)}
+      if application.profileSummary
+        h3 Tóm tắt hồ sơ
+        p #{application.profileSummary}
       .cv-actions
         a.btn(target="_blank",href=application.cvPath)
           i.fa-solid.fa-expand
