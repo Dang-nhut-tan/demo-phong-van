@@ -24,3 +24,9 @@ Sau đó mở:
 | Nhân sự | hr@viettravel.vn | Hr@123456 |
 
 CV được lưu tại `public/uploads/cv`; dữ liệu SQLite nằm trong `data/viettravel.sqlite`.
+
+## Triển khai demo trên Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Dang-nhut-tan/demo-phong-van)
+
+> Gói Render miễn phí dùng ổ đĩa tạm thời. Dữ liệu SQLite và CV tải lên có thể được tạo lại sau khi dịch vụ khởi động lại hoặc triển khai phiên bản mới.
