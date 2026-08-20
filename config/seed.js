@@ -43,6 +43,7 @@ module.exports = async function seed() {
   const jobSeeds = [
     {
       title:"Nhân viên Điều hành Tour", slug:"nhan-vien-dieu-hanh-tour", department:"Phòng Điều hành", location:"TP. Hồ Chí Minh", quantity:1,
+      poster:"/assets/images/recruitment/tour-operator.jpg",
       supervisor:"Trưởng nhóm/Trưởng bộ phận Điều hành",
       jobDescription:"Tiếp nhận thông tin chương trình tour, tổ chức và điều phối các dịch vụ cần thiết nhằm đảm bảo tour được thực hiện đúng lịch trình, chất lượng và yêu cầu của khách hàng. Phối hợp với nhà cung cấp, hướng dẫn viên và các bộ phận liên quan để theo dõi, xử lý các vấn đề phát sinh trong quá trình thực hiện tour.",
       responsibilities:["Tiếp nhận thông tin tour từ bộ phận Kinh doanh Tour; kiểm tra lịch trình và kế hoạch thực hiện.","Liên hệ, đặt và xác nhận phương tiện vận chuyển, khách sạn, nhà hàng, vé tham quan và hướng dẫn viên.","Chuẩn bị booking, danh sách khách, lịch trình và thông tin dịch vụ trước ngày khởi hành.","Phối hợp với hướng dẫn viên, nhà cung cấp và các bộ phận liên quan; theo dõi tour và cập nhật tình hình.","Xử lý thay đổi lịch trình, dịch vụ hoặc yêu cầu phát sinh của khách hàng.","Kiểm tra chi phí, hóa đơn; đối soát, quyết toán và tiếp nhận phản hồi sau tour.","Báo cáo tình hình thực hiện tour và thực hiện nhiệm vụ khác theo yêu cầu của cấp trên."],
@@ -51,6 +52,7 @@ module.exports = async function seed() {
     },
     {
       title:"Nhân viên Kinh doanh Tour – Sales Tour", slug:"nhan-vien-sale-tour", department:"Phòng Kinh doanh", location:"TP. Hồ Chí Minh", quantity:1,
+      poster:"/assets/images/recruitment/sales-tour.jpg",
       supervisor:"Trưởng nhóm/Trưởng phòng Kinh doanh",
       jobDescription:"Tìm kiếm và tiếp cận khách hàng có nhu cầu du lịch, tư vấn các chương trình tour phù hợp, thực hiện hoạt động bán tour và chăm sóc khách hàng nhằm hoàn thành chỉ tiêu kinh doanh và đảm bảo chất lượng phục vụ.",
       responsibilities:["Tìm kiếm, tiếp cận khách hàng tiềm năng; tiếp nhận và tìm hiểu nhu cầu, ngân sách của khách hàng.","Tư vấn chương trình tour, lịch trình, giá và các dịch vụ liên quan; báo giá và giải đáp thắc mắc.","Hỗ trợ khách hàng đăng ký tour, thực hiện thủ tục, đặt cọc và thanh toán.","Theo dõi, chăm sóc khách hàng trước, trong và sau chuyến đi; tiếp nhận phản hồi và phối hợp xử lý phát sinh.","Phối hợp với điều hành tour, kế toán, marketing và các bộ phận liên quan.","Cập nhật thông tin khách hàng, báo cáo kết quả kinh doanh và thực hiện chỉ tiêu doanh số."],

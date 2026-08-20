@@ -14,18 +14,25 @@ block main
       .job-grid
         each job in jobs
           article.job-card
-            .job-card-top
-              span.job-department #{job.department}
-              span.job-location
-                i.fa-solid.fa-location-dot
-                |  #{job.location}
-            h3
-              a(href=`/tuyen-dung/${job.slug}`) #{job.title}
-            .job-meta
-              span
-                i.fa-solid.fa-users
-                |  #{job.quantity} người
-              span
-                i.fa-regular.fa-calendar
-                |  Hạn: #{job.deadline}
-            a.job-button(href=`/tuyen-dung/${job.slug}`) Xem chi tiết
+            if job.poster
+              a.job-poster-link(href=`/tuyen-dung/${job.slug}`)
+                img.job-poster(src=job.poster,alt=`Poster tuyển dụng ${job.title}`,loading="lazy")
+            .job-card-body
+              .job-card-top
+                span.job-department #{job.department}
+                span.job-location
+                  i.fa-solid.fa-location-dot
+                  |  #{job.location}
+              h3
+                a(href=`/tuyen-dung/${job.slug}`) #{job.title}
+              .job-meta
+                span
+                  i.fa-solid.fa-users
+                  |  #{job.quantity} người
+                span
+                  i.fa-regular.fa-calendar
+                  |  Hạn: #{job.deadline}
+              .job-card-actions
+                a.job-button(href=`/tuyen-dung/${job.slug}`) Xem chi tiết
+                if job.poster
+                  a.job-poster-button(href=job.poster,target="_blank",rel="noopener noreferrer") Xem full poster

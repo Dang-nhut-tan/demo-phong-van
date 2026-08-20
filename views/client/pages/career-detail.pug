@@ -5,6 +5,11 @@ block main
       a.career-back(href="/tuyen-dung") ← Tất cả vị trí
       .job-detail
         .job-content
+          if job.poster
+            img.job-detail-poster(src=job.poster,alt=`Poster tuyển dụng ${job.title}`)
+            a.job-poster-button.job-detail-poster-button(href=job.poster,target="_blank",rel="noopener noreferrer")
+              i.fa-solid.fa-up-right-from-square
+              |  Xem full poster
           span.job-department #{job.department}
           h1 #{job.title}
           .job-meta
