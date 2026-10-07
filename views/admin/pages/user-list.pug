@@ -9,33 +9,36 @@ block main
       .inner-item.inner-label
         <i class="fa-solid fa-filter"></i> Bộ lọc
       .inner-item
-        select
+        select(filter-status)
           option(value="") Trạng thái
-          option(value="") Hoạt động
-          option(value="") Tạm dừng
+          option(value="active" selected=(currentStatus == "active")) Hoạt động
+          option(value="inactive" selected=(currentStatus == "inactive")) Tạm dừng
       .inner-item.inner-date
-        input(type="date")
+        input(type="date" filter-start-date)
         span -
-        input(type="date")
-      .inner-item.inner-reset
+        input(type="date" filter-end-date)
+      .inner-item.inner-reset(filter-reset)
         <i class="fa-solid fa-rotate-left"></i> Xóa bộ lọc
   //- End Section 4
 
   //- Section 5
   .section-5
     .inner-wrap
-      .inner-change-status
+      .inner-change-status(
+        change-multi
+        data-api=`/${pathAdmin}/user/change-multi`
+      )
         .inner-item
           select
             option(value="") -- Hành động --
-            option(value="") Hoạt động
-            option(value="") Dừng hoạt động
-            option(value="") Xóa
+            option(value="active") Hoạt động
+            option(value="inactive") Dừng hoạt động
+            option(value="delete") Xóa
         .inner-item
           button Áp dụng
       .inner-search
         <i class="fa-solid fa-magnifying-glass"></i>
-        input(type="text" placeholder="Tìm kiếm")
+        input(type="text" placeholder="Tìm kiếm theo tên, email, SĐT" search value=keyword)
   //- End Section 5
 
   //- Section 6
@@ -45,37 +48,46 @@ block main
         thead
           tr
             th(class="inner-center")
-              input(type="checkbox" class="inner-check")
+              input(type="checkbox" class="inner-check" check-all)
             th Họ tên
             th(class="inner-center") Ảnh đại diện
             th Email
             th Số điện thoại
             th Địa chỉ
             th Trạng thái
-            th Hành động
+            th(class="inner-center") Hành động
         tbody
-          tr
-            td(class="inner-center")
-              input(type="checkbox" class="inner-check")
-            td Lê Văn A
-            td(class="inner-center")
-              img(src="/admin/assets/images/avatar.jpg" class="inner-avatar")
-            td levana@gmail.com
-            td 01234567890
-            td Số 123, đường ABC,...
-            td
-              .badge.badge-green Hoạt động
-            td
-              .inner-buttons
-                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
-                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+          if (userList && userList.length > 0)
+            each user in userList
+              tr
+                td(class="inner-center")
+                  input(type="checkbox" class="inner-check" check-item=user.id)
+                td
+                  strong #{user.fullName}
+                td(class="inner-center")
+                  img(src=(user.avatar || "/admin/assets/images/avatar.jpg") class="inner-avatar" alt=user.fullName)
+                td #{user.email}
+                td #{user.phone}
+                td #{user.address || "-"}
+                td
+                  if (user.status == "active")
+                    .badge.badge-green Hoạt động
+                  else
+                    .badge.badge-red Tạm dừng
+                td(class="inner-center")
+                  .inner-buttons
+                    button(
+                      class="inner-delete"
+                      button-delete
+                      data-api=`/${pathAdmin}/user/delete/${user.id}`
+                      title="Xóa người dùng"
+                    ) <i class="fa-regular fa-trash-can"></i>
+          else
+            tr
+              td(colspan="8" style="text-align: center; padding: 24px; color: #64748b;") Không tìm thấy người dùng nào
   //- End Section 6
 
   //- Section 7
   .section-7
-    span(class="inner-label") Hiển thị 1 - 9 của 78
-    select(class="inner-pagination")
-      option Trang 1
-      option Trang 2
-      option Trang 3
+    span(class="inner-label") Hiển thị #{userList ? userList.length : 0} người dùng
   //- End Section 7

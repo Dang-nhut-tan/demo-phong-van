@@ -8,25 +8,25 @@ block main
     .section-1
       .inner-item
         .inner-icon
-          img(src="/admin/assets/images/section-1-icon-1.svg")
+          img(src="/admin/assets/images/section-1-icon-1.svg" alt="Quản trị viên")
         .inner-content
           .inner-title Quản trị viên
           .inner-number #{overview.totalAdmin.toLocaleString("vi-VN")}
       .inner-item
         .inner-icon
-          img(src="/admin/assets/images/section-1-icon-1.svg")
+          img(src="/admin/assets/images/section-1-icon-1.svg" alt="Người dùng")
         .inner-content
           .inner-title Người dùng
           .inner-number #{overview.totalUser.toLocaleString("vi-VN")}
       .inner-item
         .inner-icon
-          img(src="/admin/assets/images/section-1-icon-2.svg")
+          img(src="/admin/assets/images/section-1-icon-2.svg" alt="Đơn hàng")
         .inner-content
           .inner-title Đơn hàng
           .inner-number #{overview.totalOrder.toLocaleString("vi-VN")}
       .inner-item
         .inner-icon
-          img(src="/admin/assets/images/section-1-icon-3.svg")
+          img(src="/admin/assets/images/section-1-icon-3.svg" alt="Doanh thu")
         .inner-content
           .inner-title Doanh thu
           .inner-number #{overview.totalPrice.toLocaleString("vi-VN")}đ
@@ -59,40 +59,52 @@ block main
               th Trạng thái
               th.inner-text-right Ngày đặt
           tbody
-            tr
-              td
-                .inner-code OD000001
-              td
-                .inner-text Họ tên: Lê Văn A
-                .inner-text SĐT: 0123456789
-                .inner-text Ghi chú: Test...
-              td
-                .inner-item
-                  .inner-image
-                    img(src="/admin/assets/images/tour-1.jpg", alt="Tour Hạ Long")
-                  .inner-content
-                    .inner-name Tour Hạ Long
-                    .inner-quantity Người lớn: 3 x 1.500.000đ
-                    .inner-quantity Trẻ em: 2 x 1.300.000đ
-                    .inner-quantity Em bé: 2 x 1.000.000đ
-                .inner-item
-                  .inner-image
-                    img(src="/admin/assets/images/tour-1.jpg", alt="Tour Hạ Long")
-                  .inner-content
-                    .inner-name Tour Hạ Long
-                    .inner-quantity Người lớn: 3 x 1.500.000đ
-                    .inner-quantity Trẻ em: 2 x 1.300.000đ
-                    .inner-quantity Em bé: 2 x 1.000.000đ
-              td
-                .inner-text Tổng tiền: 10.000.000đ
-                .inner-text Giảm: 400.000đ
-                .inner-text Mã giảm: TOURMUAHE2024
-                .inner-text Thanh toán: 9.600.000đ
-                .inner-text PTTT: Ví Momo
-                .inner-text TTTT: Đã thanh toán
-              td
-                .badge.badge-orange Khởi tạo
-              td.inner-text-right
-                .inner-text 16:20
-                .inner-text 01/01/2024
+            if (latestOrders && latestOrders.length > 0)
+              each order in latestOrders
+                tr
+                  td
+                    .inner-code #{order.orderCode}
+                  td
+                    .inner-text
+                      strong #{order.fullName}
+                    .inner-text SĐT: #{order.phone}
+                    if order.note
+                      .inner-text.inner-subtext Ghi chú: #{order.note}
+                  td
+                    if order.items && order.items.length > 0
+                      each item in order.items
+                        .inner-item
+                          .inner-image
+                            img(src=item.avatar, alt=item.name)
+                          .inner-content
+                            .inner-name #{item.name}
+                            if item.quantityAdult
+                              .inner-quantity Người lớn: #{item.quantityAdult} x #{(item.priceNewAdult || 0).toLocaleString("vi-VN")}đ
+                            if item.quantityChildren
+                              .inner-quantity Trẻ em: #{item.quantityChildren} x #{(item.priceNewChildren || 0).toLocaleString("vi-VN")}đ
+                            if item.quantityBaby
+                              .inner-quantity Em bé: #{item.quantityBaby} x #{(item.priceNewBaby || 0).toLocaleString("vi-VN")}đ
+                    else
+                      span -
+                  td
+                    .inner-text Tổng tiền: #{(order.total || 0).toLocaleString("vi-VN")}đ
+                    if order.discount
+                      .inner-text Giảm: #{(order.discount || 0).toLocaleString("vi-VN")}đ
+                    .inner-text PTTT: #{order.paymentMethodName || order.paymentMethod}
+                    .inner-text TTTT: #{order.paymentStatusName || order.paymentStatus}
+                  td
+                    if (order.status == "initial")
+                      .badge.badge-orange #{order.statusName || "Khởi tạo"}
+                    else if (order.status == "done")
+                      .badge.badge-green #{order.statusName || "Hoàn thành"}
+                    else if (order.status == "cancel")
+                      .badge.badge-red #{order.statusName || "Đã hủy"}
+                    else
+                      .badge.badge-orange #{order.statusName || order.status}
+                  td.inner-text-right
+                    .inner-text #{order.createdAtTime}
+                    .inner-text #{order.createdAtDate}
+            else
+              tr
+                td(colspan="6" style="text-align: center; padding: 24px; color: #64748b;") Chưa có đơn hàng nào
     //- End Section 3

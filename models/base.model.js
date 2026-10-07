@@ -23,7 +23,20 @@ class Query {
   constructor(run) { this.run = run; this.sortSpec = null; this.limitValue = null; this.skipValue = 0; this.selectFields = null; }
   sort(spec) { this.sortSpec = spec; return this; } limit(v) { this.limitValue = Number(v); return this; } skip(v) { this.skipValue = Number(v); return this; }
   select(fields) { this.selectFields = String(fields).split(/\s+/); return this; }
-  async exec() { let rows = this.run(); if (this.sortSpec) rows.sort((a,b) => { for (const [k,d] of Object.entries(this.sortSpec)) { if (a[k] < b[k]) return -1*d; if (a[k] > b[k]) return d; } return 0; }); rows = rows.slice(this.skipValue, this.limitValue == null ? undefined : this.skipValue + this.limitValue); if (this.selectFields) rows = rows.map(r => Object.fromEntries(["_id",...this.selectFields].filter(k => r[k] !== undefined).map(k => [k,r[k]]))); return rows; }
+  async exec() {
+    let rows = this.run();
+    if (this.sortSpec) rows.sort((a,b) => {
+      for (const [k,rawDir] of Object.entries(this.sortSpec)) {
+        const d = (rawDir === "desc" || rawDir === -1) ? -1 : 1;
+        if (a[k] < b[k]) return -1 * d;
+        if (a[k] > b[k]) return d;
+      }
+      return 0;
+    });
+    rows = rows.slice(this.skipValue, this.limitValue == null ? undefined : this.skipValue + this.limitValue);
+    if (this.selectFields) rows = rows.map(r => Object.fromEntries(["_id",...this.selectFields].filter(k => r[k] !== undefined).map(k => [k,r[k]])));
+    return rows;
+  }
   then(resolve, reject) { return this.exec().then(resolve, reject); }
 }
 

@@ -7,6 +7,9 @@ const Category = require("../models/category.model");
 const Tour = require("../models/tour.model");
 const Job = require("../models/job.model");
 const Application = require("../models/application.model");
+const User = require("../models/user.model");
+const Order = require("../models/order.model");
+const Contact = require("../models/contact.model");
 const seedInternationalTours = require("./seed-international");
 
 module.exports = async function seed() {
@@ -190,4 +193,133 @@ module.exports = async function seed() {
     Object.assign(application,candidate,{jobId:job._id,jobTitle:job.title});
     await application.save();
   }
+
+  if (await User.countDocuments({}) === 0) {
+    const userSeeds = [
+      { fullName: "Lê Văn An", email: "an.le@gmail.com", phone: "0912345678", address: "Số 45 Lê Duẩn, Quận 1, TP.HCM", status: "active", avatar: "/admin/assets/images/avatar.jpg" },
+      { fullName: "Trần Thị Mai", email: "mai.tran@gmail.com", phone: "0987654321", address: "12 Huỳnh Thúc Kháng, Ba Đình, Hà Nội", status: "active", avatar: "/admin/assets/images/avatar.jpg" },
+      { fullName: "Phạm Hoàng Nam", email: "nam.pham@yahoo.com", phone: "0905123456", address: "88 Trần Phú, Hải Châu, Đà Nẵng", status: "active", avatar: "/admin/assets/images/avatar.jpg" },
+      { fullName: "Đỗ Quỳnh Nga", email: "nga.do@outlook.com", phone: "0934567890", address: "25 Hai Bà Trưng, TP. Đà Lạt", status: "active", avatar: "/admin/assets/images/avatar.jpg" },
+      { fullName: "Hoàng Minh Đức", email: "duc.hoang@gmail.com", phone: "0978901234", address: "104 Nguyễn Thị Minh Khai, Nha Trang", status: "active", avatar: "/admin/assets/images/avatar.jpg" },
+      { fullName: "Vũ Bích Thảo", email: "thao.vu@gmail.com", phone: "0945678901", address: "56 Trần Hưng Đạo, TP. Phú Quốc", status: "inactive", avatar: "/admin/assets/images/avatar.jpg" }
+    ];
+    for (const u of userSeeds) {
+      await new User(u).save();
+    }
+  }
+
+  if (await Contact.countDocuments({}) === 0) {
+    const contactSeeds = [
+      { email: "khachhang1@gmail.com" },
+      { email: "tuvan.tour@vietravel.vn" },
+      { email: "hoangminh@gmail.com" },
+      { email: "thuha.travel@outlook.com" }
+    ];
+    for (const c of contactSeeds) {
+      await new Contact(c).save();
+    }
+  }
+
+  if (await Order.countDocuments({}) === 0) {
+    const tours = await Tour.find({ deleted: false, status: "active" });
+    const cities = await City.find({});
+    if (tours.length > 0) {
+      const cityId = cities.length > 0 ? cities[0]._id : "hcm";
+      const cityName = cities.length > 0 ? cities[0].name : "TP. Hồ Chí Minh";
+      const now = new Date();
+
+      const tour1 = tours[0];
+      const tour2 = tours.length > 1 ? tours[1] : tours[0];
+      const tour3 = tours.length > 2 ? tours[2] : tours[0];
+
+      const orderSeeds = [
+        {
+          orderCode: "OD100001",
+          fullName: "Lê Văn An",
+          phone: "0912345678",
+          note: "Yêu cầu phòng hướng biển, tầng cao",
+          items: [{
+            tourId: tour1._id,
+            name: tour1.name,
+            avatar: tour1.avatar,
+            priceNewAdult: tour1.priceNewAdult || 4500000,
+            quantityAdult: 2,
+            priceNewChildren: tour1.priceNewChildren || 3200000,
+            quantityChildren: 1,
+            priceNewBaby: 0,
+            quantityBaby: 0,
+            departureDate: tour1.departureDate,
+            locationFrom: cityId,
+            locationFromName: cityName
+          }],
+          subTotal: ((tour1.priceNewAdult || 4500000) * 2) + (tour1.priceNewChildren || 3200000),
+          discount: 500000,
+          total: ((tour1.priceNewAdult || 4500000) * 2) + (tour1.priceNewChildren || 3200000) - 500000,
+          paymentMethod: "vnpay",
+          paymentStatus: "paid",
+          status: "done",
+          createdAt: new Date(now.getFullYear(), now.getMonth(), Math.max(1, now.getDate() - 2), 10, 30).toISOString()
+        },
+        {
+          orderCode: "OD100002",
+          fullName: "Trần Thị Mai",
+          phone: "0987654321",
+          note: "Có em bé nhỏ, cần chuẩn bị nôi",
+          items: [{
+            tourId: tour2._id,
+            name: tour2.name,
+            avatar: tour2.avatar,
+            priceNewAdult: tour2.priceNewAdult || 4800000,
+            quantityAdult: 2,
+            priceNewChildren: 0,
+            quantityChildren: 0,
+            priceNewBaby: tour2.priceNewBaby || 900000,
+            quantityBaby: 1,
+            departureDate: tour2.departureDate,
+            locationFrom: cityId,
+            locationFromName: cityName
+          }],
+          subTotal: ((tour2.priceNewAdult || 4800000) * 2) + (tour2.priceNewBaby || 900000),
+          discount: 0,
+          total: ((tour2.priceNewAdult || 4800000) * 2) + (tour2.priceNewBaby || 900000),
+          paymentMethod: "momo",
+          paymentStatus: "paid",
+          status: "initial",
+          createdAt: new Date(now.getFullYear(), now.getMonth(), Math.max(1, now.getDate() - 1), 14, 15).toISOString()
+        },
+        {
+          orderCode: "OD100003",
+          fullName: "Phạm Hoàng Nam",
+          phone: "0905123456",
+          note: "Liên hệ giờ hành chính",
+          items: [{
+            tourId: tour3._id,
+            name: tour3.name,
+            avatar: tour3.avatar,
+            priceNewAdult: tour3.priceNewAdult || 5100000,
+            quantityAdult: 1,
+            priceNewChildren: 0,
+            quantityChildren: 0,
+            priceNewBaby: 0,
+            quantityBaby: 0,
+            departureDate: tour3.departureDate,
+            locationFrom: cityId,
+            locationFromName: cityName
+          }],
+          subTotal: tour3.priceNewAdult || 5100000,
+          discount: 200000,
+          total: (tour3.priceNewAdult || 5100000) - 200000,
+          paymentMethod: "money",
+          paymentStatus: "unpaid",
+          status: "initial",
+          createdAt: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 20).toISOString()
+        }
+      ];
+
+      for (const ord of orderSeeds) {
+        await new Order(ord).save();
+      }
+    }
+  }
+
 };

@@ -9,7 +9,7 @@ header.header
       span 6
     .inner-account
       .inner-avatar
-        img(src=account.avatar, alt=account.fullName)
+        img(src=(account.avatar || "/admin/assets/images/avatar.jpg"), alt=account.fullName)
       .inner-text
         .inner-name #{account.fullName}
         .inner-role #{account.roleName}

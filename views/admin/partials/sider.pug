@@ -16,6 +16,9 @@ nav.sider
       a(href=`/${pathAdmin}/user/list`) <i class="fa-solid fa-user"></i> Quản lý người dùng
     li
       a(href=`/${pathAdmin}/contact/list`) <i class="fa-solid fa-user-group"></i> Thông tin liên hệ
+    if (permissions.includes("recruitment-view"))
+      li
+        a(href="/hr" target="_blank") <i class="fa-solid fa-users-gear"></i> Tuyển dụng & HR
   hr
   ul.inner-menu
     li
