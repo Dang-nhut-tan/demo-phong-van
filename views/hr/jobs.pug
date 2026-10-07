@@ -28,5 +28,6 @@ block content
               span(class=`badge badge-${job.status}`) #{job.status==='active'?'Đang tuyển':job.status==='inactive'?'Đang ẩn':'Đã đóng'}
             td.actions
               a.table-link(href=`/hr/tin-tuyen-dung/${job._id}/sua`) Sửa
-              form(method="post",action=`/hr/tin-tuyen-dung/${job._id}/xoa`,onsubmit="return confirm('Xóa tin này?')")
-                button.link-danger(type="submit") Xóa
+              if canDelete
+                form(method="post",action=`/hr/tin-tuyen-dung/${job._id}/xoa`,onsubmit="return confirm('Xóa tin này?')")
+                  button.link-danger(type="submit") Xóa

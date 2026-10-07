@@ -15,10 +15,37 @@ const seedInternationalTours = require("./seed-international");
 module.exports = async function seed() {
   await seedInternationalTours();
   if (!await Setting.findOne({})) await new Setting({ websiteName:"VietTravel", phone:"1900 8686", email:"hello@viettravel.vn", address:"123 Nguyễn Huệ, Quận 1, TP.HCM", logo:"/assets/images/logo.png", favicon:"/assets/images/logo.png" }).save();
+  const allAdminPerms = [
+    "dashboard-view",
+    "category-view", "category-create", "category-edit", "category-delete", "category-trash",
+    "tour-view", "tour-create", "tour-edit", "tour-delete", "tour-trash",
+    "order-view", "order-edit", "order-delete", "order-trash",
+    "recruitment-view", "recruitment-create", "recruitment-edit", "recruitment-delete", "recruitment-manage"
+  ];
   let adminRole = await Role.findOne({ name:"Quản trị viên" });
-  if (!adminRole) { adminRole = new Role({ name:"Quản trị viên", description:"Toàn quyền hệ thống", permissions:["dashboard-view","category-view","category-create","category-edit","category-delete","category-trash","tour-view","tour-create","tour-edit","tour-delete","tour-trash","order-view","order-edit","recruitment-view","recruitment-manage"] }); await adminRole.save(); }
+  if (!adminRole) {
+    adminRole = new Role({ name:"Quản trị viên", description:"Toàn quyền hệ thống", permissions: allAdminPerms });
+    await adminRole.save();
+  } else {
+    const missing = allAdminPerms.filter(p => !adminRole.permissions.includes(p));
+    if (missing.length > 0) {
+      adminRole.permissions = [...adminRole.permissions, ...missing];
+      await adminRole.save();
+    }
+  }
+
+  const hrPerms = ["recruitment-view", "recruitment-create", "recruitment-edit", "recruitment-delete", "recruitment-manage"];
   let hrRole = await Role.findOne({ name:"Nhân sự" });
-  if (!hrRole) { hrRole = new Role({ name:"Nhân sự", description:"Quản lý tuyển dụng", permissions:["recruitment-view","recruitment-manage"] }); await hrRole.save(); }
+  if (!hrRole) {
+    hrRole = new Role({ name:"Nhân sự", description:"Quản lý tuyển dụng", permissions: hrPerms });
+    await hrRole.save();
+  } else {
+    const missing = hrPerms.filter(p => !hrRole.permissions.includes(p));
+    if (missing.length > 0) {
+      hrRole.permissions = [...hrRole.permissions, ...missing];
+      await hrRole.save();
+    }
+  }
   const adminEmail = process.env.ADMIN_EMAIL || process.env.ADMIN_USERNAME || "admin@viettravel.vn";
   const adminPassword = process.env.ADMIN_PASSWORD || "Admin@123";
   const adminFullName = process.env.ADMIN_FULL_NAME || "Quản trị VietTravel";

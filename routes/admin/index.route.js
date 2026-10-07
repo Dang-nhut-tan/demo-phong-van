@@ -9,6 +9,7 @@ const contactRoutes = require("./contact.route");
 const settingRoutes = require("./setting.route");
 const profileRoutes = require("./profile.route");
 const uploadRoutes = require("./upload.route");
+const recruitmentRoutes = require("./recruitment.route");
 
 const authMiddleware = require("../../middlewares/admin/auth.middleware");
 
@@ -27,6 +28,7 @@ router.use('/contact', authMiddleware.verifyToken, contactRoutes)
 router.use('/setting', authMiddleware.verifyToken, settingRoutes)
 router.use('/profile', authMiddleware.verifyToken, profileRoutes)
 router.use('/upload', authMiddleware.verifyToken, uploadRoutes)
+router.use('/recruitment', authMiddleware.verifyToken, recruitmentRoutes)
 
 router.get('*', authMiddleware.verifyToken, (req, res) => {
   res.render("admin/pages/error-404", {

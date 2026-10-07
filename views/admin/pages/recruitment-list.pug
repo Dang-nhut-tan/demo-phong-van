@@ -1,0 +1,120 @@
+extends ../layouts/default.pug
+
+block main
+  h1.box-title Quản lý tin tuyển dụng
+
+  //- Section 4
+  .section-4
+    .inner-wrap
+      .inner-item.inner-label
+        <i class="fa-solid fa-filter"></i> Bộ lọc
+      .inner-item
+        select(filter-status)
+          option(value="") Trạng thái
+          option(value="active" selected=(currentStatus == "active")) Đang tuyển
+          option(value="closed" selected=(currentStatus == "closed")) Đã đóng
+          option(value="inactive" selected=(currentStatus == "inactive")) Đang ẩn
+      .inner-item.inner-date
+        input(type="date" filter-start-date)
+        span -
+        input(type="date" filter-end-date)
+      .inner-item.inner-reset(filter-reset)
+        <i class="fa-solid fa-rotate-left"></i> Xóa bộ lọc
+  //- End Section 4
+
+  //- Section 5
+  .section-5
+    .inner-wrap
+      .inner-change-status(
+        change-multi
+        data-api=`/${pathAdmin}/recruitment/change-multi`
+      )
+        .inner-item
+          select
+            option(value="") -- Hành động --
+            option(value="active") Đang tuyển
+            option(value="inactive") Đang ẩn
+            option(value="closed") Đóng tuyển dụng
+            if canDelete
+              option(value="delete") Xóa
+        .inner-item
+          button Áp dụng
+      .inner-search
+        <i class="fa-solid fa-magnifying-glass"></i>
+        input(type="text" placeholder="Tìm theo vị trí, phòng ban, địa điểm" search value=keyword)
+      .inner-button-create
+        a(href="/hr/tin-tuyen-dung/tao" target="_blank") + Đăng tin mới
+  //- End Section 5
+
+  //- Section 6
+  .section-6
+    .table-2
+      table
+        thead
+          tr
+            th(class="inner-center")
+              input(type="checkbox" class="inner-check" check-all)
+            th Vị trí tuyển dụng
+            th Phòng ban
+            th Địa điểm
+            th(class="inner-center") Số lượng
+            th Hạn nộp
+            th Trạng thái
+            th(class="inner-center") Hành động
+        tbody
+          if (jobList && jobList.length > 0)
+            each job in jobList
+              tr
+                td(class="inner-center")
+                  input(type="checkbox" class="inner-check" check-item=job.id)
+                td
+                  .inner-item
+                    if job.poster
+                      .inner-image
+                        img(src=job.poster alt=job.title)
+                    .inner-content
+                      .inner-name
+                        strong #{job.title}
+                      if job.supervisor
+                        .inner-time Trực thuộc: #{job.supervisor}
+                td #{job.department}
+                td #{job.location}
+                td(class="inner-center") #{job.quantity || 1}
+                td #{job.deadline || "Không giới hạn"}
+                td
+                  if (job.status == "active")
+                    .badge.badge-green Đang tuyển
+                  else if (job.status == "closed")
+                    .badge.badge-red Đã đóng
+                  else
+                    .badge.badge-orange Đang ẩn
+                td(class="inner-center")
+                  .inner-buttons
+                    a(
+                      href=`/tuyen-dung/${job.slug}`
+                      target="_blank"
+                      class="inner-edit"
+                      title="Xem tin trên website"
+                    ) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    a(
+                      href=`/hr/tin-tuyen-dung/${job.id}/sua`
+                      target="_blank"
+                      class="inner-edit"
+                      title="Chỉnh sửa tin tuyển dụng"
+                    ) <i class="fa-regular fa-pen-to-square"></i>
+                    if canDelete
+                      button(
+                        class="inner-delete"
+                        button-delete
+                        data-api=`/${pathAdmin}/recruitment/delete/${job.id}`
+                        title="Xóa tin tuyển dụng"
+                      ) <i class="fa-regular fa-trash-can"></i>
+          else
+            tr
+              td(colspan="8" style="text-align: center; padding: 24px; color: #64748b;") Không tìm thấy tin tuyển dụng nào
+  //- End Section 6
+
+  //- Section 7
+  .section-7
+    span(class="inner-label") Hiển thị #{jobList ? jobList.length : 0} tin tuyển dụng
+  //- End Section 7

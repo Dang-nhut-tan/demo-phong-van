@@ -59,4 +59,24 @@ module.exports.permissionList = [
     label: "Thùng rác đơn hàng",
     value: "order-trash"
   },
+  {
+    label: "Xem tin tuyển dụng",
+    value: "recruitment-view"
+  },
+  {
+    label: "Tạo tin tuyển dụng",
+    value: "recruitment-create"
+  },
+  {
+    label: "Sửa tin tuyển dụng",
+    value: "recruitment-edit"
+  },
+  {
+    label: "Xóa tin tuyển dụng",
+    value: "recruitment-delete"
+  },
+  {
+    label: "Quản lý tuyển dụng toàn quyền",
+    value: "recruitment-manage"
+  }
 ];

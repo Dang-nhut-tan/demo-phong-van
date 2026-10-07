@@ -18,7 +18,9 @@ nav.sider
       a(href=`/${pathAdmin}/contact/list`) <i class="fa-solid fa-user-group"></i> Thông tin liên hệ
     if (permissions.includes("recruitment-view"))
       li
-        a(href="/hr" target="_blank") <i class="fa-solid fa-users-gear"></i> Tuyển dụng & HR
+        a(href=`/${pathAdmin}/recruitment/list`) <i class="fa-solid fa-briefcase"></i> Tin tuyển dụng
+      li
+        a(href="/hr" target="_blank") <i class="fa-solid fa-users-gear"></i> Cổng tuyển dụng HR
   hr
   ul.inner-menu
     li
