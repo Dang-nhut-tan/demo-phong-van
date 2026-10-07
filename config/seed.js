@@ -18,20 +18,30 @@ module.exports = async function seed() {
   if (!hrRole) { hrRole = new Role({ name:"Nhân sự", description:"Quản lý tuyển dụng", permissions:["recruitment-view","recruitment-manage"] }); await hrRole.save(); }
   const adminEmail = process.env.ADMIN_EMAIL || process.env.ADMIN_USERNAME || "admin@viettravel.vn";
   const adminPassword = process.env.ADMIN_PASSWORD || "Admin@123";
-  let adminAccount = await Account.findOne({ email: adminEmail });
+  const adminFullName = process.env.ADMIN_FULL_NAME || "Quản trị VietTravel";
+  const adminPhone = process.env.ADMIN_PHONE || "0909000001";
+  const adminPosition = process.env.ADMIN_POSITION || "Quản trị viên";
+  let adminAccount = await Account.findOne({ seedKey: "admin" }) || await Account.findOne({ email: adminEmail }) || await Account.findOne({ phone: "0909000001" });
   if (!adminAccount) {
     adminAccount = new Account({
-      fullName: "Quản trị VietTravel",
+      fullName: adminFullName,
+      seedKey: "admin",
       email: adminEmail,
-      phone: "0909000001",
+      phone: adminPhone,
       role: adminRole._id,
-      positionCompany: "Quản trị viên",
+      positionCompany: adminPosition,
       password: await bcrypt.hash(adminPassword, 10),
       status: "active"
     });
     await adminAccount.save();
   } else {
     let needUpdate = false;
+    for (const [field, value] of Object.entries({ seedKey: "admin", fullName: adminFullName, email: adminEmail, phone: adminPhone, positionCompany: adminPosition })) {
+      if (adminAccount[field] !== value) {
+        adminAccount[field] = value;
+        needUpdate = true;
+      }
+    }
     if (adminPassword && !await bcrypt.compare(adminPassword, adminAccount.password)) {
       adminAccount.password = await bcrypt.hash(adminPassword, 10);
       needUpdate = true;
@@ -51,20 +61,30 @@ module.exports = async function seed() {
 
   const hrEmail = process.env.HR_EMAIL || process.env.HR_USERNAME || "hr@viettravel.vn";
   const hrPassword = process.env.HR_PASSWORD || "Hr@123456";
-  let hrAccount = await Account.findOne({ email: hrEmail });
+  const hrFullName = process.env.HR_FULL_NAME || "Nguyễn Minh Anh";
+  const hrPhone = process.env.HR_PHONE || "0909000002";
+  const hrPosition = process.env.HR_POSITION || "Chuyên viên nhân sự";
+  let hrAccount = await Account.findOne({ seedKey: "hr" }) || await Account.findOne({ email: hrEmail }) || await Account.findOne({ phone: "0909000002" });
   if (!hrAccount) {
     hrAccount = new Account({
-      fullName: "Nguyễn Minh Anh",
+      fullName: hrFullName,
+      seedKey: "hr",
       email: hrEmail,
-      phone: "0909000002",
+      phone: hrPhone,
       role: hrRole._id,
-      positionCompany: "Chuyên viên nhân sự",
+      positionCompany: hrPosition,
       password: await bcrypt.hash(hrPassword, 10),
       status: "active"
     });
     await hrAccount.save();
   } else {
     let needUpdate = false;
+    for (const [field, value] of Object.entries({ seedKey: "hr", fullName: hrFullName, email: hrEmail, phone: hrPhone, positionCompany: hrPosition })) {
+      if (hrAccount[field] !== value) {
+        hrAccount[field] = value;
+        needUpdate = true;
+      }
+    }
     if (hrPassword && !await bcrypt.compare(hrPassword, hrAccount.password)) {
       hrAccount.password = await bcrypt.hash(hrPassword, 10);
       needUpdate = true;

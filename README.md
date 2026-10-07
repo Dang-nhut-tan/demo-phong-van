@@ -23,7 +23,7 @@ Sau đó mở:
 | Quản trị | admin@viettravel.vn | Admin@123 |
 | Nhân sự | hr@viettravel.vn | Hr@123456 |
 
-> Các tài khoản mặc định trên có thể được cấu hình hoặc thay đổi trong file `.env` qua các biến: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `HR_EMAIL`, `HR_PASSWORD`.
+> Có thể cấu hình toàn bộ thông tin hai tài khoản trong `.env`: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_FULL_NAME`, `ADMIN_PHONE`, `ADMIN_POSITION`, `HR_EMAIL`, `HR_PASSWORD`, `HR_FULL_NAME`, `HR_PHONE`, `HR_POSITION`. Mỗi lần ứng dụng khởi động, tài khoản mẫu hiện có sẽ được đồng bộ theo các giá trị này.
 
 CV được lưu tại `public/uploads/cv`; dữ liệu SQLite nằm trong `data/viettravel.sqlite`.
 

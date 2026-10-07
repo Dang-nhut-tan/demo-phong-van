@@ -11,3 +11,23 @@ services:
         value: 22.22.0
       - key: JWT_SECRET
         generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_FULL_NAME
+        sync: false
+      - key: ADMIN_PHONE
+        sync: false
+      - key: ADMIN_POSITION
+        sync: false
+      - key: HR_EMAIL
+        sync: false
+      - key: HR_PASSWORD
+        sync: false
+      - key: HR_FULL_NAME
+        sync: false
+      - key: HR_PHONE
+        sync: false
+      - key: HR_POSITION
+        sync: false
