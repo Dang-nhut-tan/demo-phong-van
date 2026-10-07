@@ -2,20 +2,35 @@ extends layout.pug
 block publicContent
   .hr-login
     .hr-login-card
-      a.hr-brand(href="/")
-        span Viet
-        | Travel
-        small  HR
-      h1 Đăng nhập Nhân sự
-      p Quản lý tuyển dụng và hồ sơ ứng viên
+      .hr-card-header
+        a.hr-brand(href="/")
+          span Viet
+          | Travel
+          small  HR Portal
+        h1 Đăng nhập Nhân sự
+        p Quản lý tuyển dụng, phỏng vấn và hồ sơ ứng viên
       if error
-        .hr-error #{error}
+        .hr-error
+          i.fa-solid.fa-circle-exclamation
+          span #{error}
       form(method="post",action="/hr/login",autocomplete="off")
-        label Email
-        input(type="email",name="email",required,placeholder="Nhập email nhân sự",autocomplete="off")
-        label Mật khẩu
-        input(type="password",name="password",required,placeholder="Nhập mật khẩu",autocomplete="new-password",value="")
-        button(type="submit") Đăng nhập
+        .hr-form-group
+          label
+            i.fa-regular.fa-envelope
+            | Email đăng nhập
+          input(type="email",name="email",required,placeholder="Nhập email nhân sự",autocomplete="off")
+        .hr-form-group
+          label
+            i.fa-solid.fa-lock
+            | Mật khẩu
+          input(type="password",name="password",required,placeholder="Nhập mật khẩu",autocomplete="new-password",value="")
+        button(type="submit")
+          span Đăng nhập
+          i.fa-solid.fa-arrow-right
+      .hr-footer-links
+        a(href="/")
+          i.fa-solid.fa-arrow-left
+          | Quay lại trang chủ VietTravel
       script.
         window.addEventListener('DOMContentLoaded', () => {
           const pwd = document.querySelector('input[name="password"]');
