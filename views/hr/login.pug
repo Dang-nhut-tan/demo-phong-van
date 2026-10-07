@@ -10,9 +10,18 @@ block publicContent
       p Quản lý tuyển dụng và hồ sơ ứng viên
       if error
         .hr-error #{error}
-      form(method="post",action="/hr/login")
+      form(method="post",action="/hr/login",autocomplete="off")
         label Email
-        input(type="email",name="email",required,placeholder="Ví dụ: hr@viettravel.vn")
+        input(type="email",name="email",required,placeholder="Nhập email nhân sự",autocomplete="off")
         label Mật khẩu
-        input(type="password",name="password",required,placeholder="Nhập mật khẩu")
+        input(type="password",name="password",required,placeholder="Nhập mật khẩu",autocomplete="new-password",value="")
         button(type="submit") Đăng nhập
+      script.
+        window.addEventListener('DOMContentLoaded', () => {
+          const pwd = document.querySelector('input[name="password"]');
+          if (pwd) {
+            pwd.value = '';
+            setTimeout(() => { pwd.value = ''; }, 100);
+            setTimeout(() => { pwd.value = ''; }, 300);
+          }
+        });
