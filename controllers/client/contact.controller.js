@@ -1,5 +1,11 @@
 const Contact = require("../../models/contact.model");
 
+module.exports.index = async (req, res) => {
+  res.render("client/pages/contact", {
+    pageTitle: "Liên hệ | VietTravel"
+  });
+};
+
 module.exports.createPost = async (req, res) => {
   const { email } = req.body;
 
