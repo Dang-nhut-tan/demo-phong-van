@@ -16,8 +16,71 @@ module.exports = async function seed() {
   if (!adminRole) { adminRole = new Role({ name:"Quản trị viên", description:"Toàn quyền hệ thống", permissions:["dashboard-view","category-view","category-create","category-edit","category-delete","category-trash","tour-view","tour-create","tour-edit","tour-delete","tour-trash","order-view","order-edit","recruitment-view","recruitment-manage"] }); await adminRole.save(); }
   let hrRole = await Role.findOne({ name:"Nhân sự" });
   if (!hrRole) { hrRole = new Role({ name:"Nhân sự", description:"Quản lý tuyển dụng", permissions:["recruitment-view","recruitment-manage"] }); await hrRole.save(); }
-  if (!await Account.findOne({email:"admin@viettravel.vn"})) await new Account({fullName:"Quản trị VietTravel",email:"admin@viettravel.vn",phone:"0909000001",role:adminRole._id,positionCompany:"Quản trị viên",password:await bcrypt.hash("Admin@123",10),status:"active"}).save();
-  if (!await Account.findOne({email:"hr@viettravel.vn"})) await new Account({fullName:"Nguyễn Minh Anh",email:"hr@viettravel.vn",phone:"0909000002",role:hrRole._id,positionCompany:"Chuyên viên nhân sự",password:await bcrypt.hash("Hr@123456",10),status:"active"}).save();
+  const adminEmail = process.env.ADMIN_EMAIL || process.env.ADMIN_USERNAME || "admin@viettravel.vn";
+  const adminPassword = process.env.ADMIN_PASSWORD || "Admin@123";
+  let adminAccount = await Account.findOne({ email: adminEmail });
+  if (!adminAccount) {
+    adminAccount = new Account({
+      fullName: "Quản trị VietTravel",
+      email: adminEmail,
+      phone: "0909000001",
+      role: adminRole._id,
+      positionCompany: "Quản trị viên",
+      password: await bcrypt.hash(adminPassword, 10),
+      status: "active"
+    });
+    await adminAccount.save();
+  } else {
+    let needUpdate = false;
+    if (adminPassword && !await bcrypt.compare(adminPassword, adminAccount.password)) {
+      adminAccount.password = await bcrypt.hash(adminPassword, 10);
+      needUpdate = true;
+    }
+    if (!adminAccount.role) {
+      adminAccount.role = adminRole._id;
+      needUpdate = true;
+    }
+    if (adminAccount.status !== "active") {
+      adminAccount.status = "active";
+      needUpdate = true;
+    }
+    if (needUpdate) {
+      await adminAccount.save();
+    }
+  }
+
+  const hrEmail = process.env.HR_EMAIL || process.env.HR_USERNAME || "hr@viettravel.vn";
+  const hrPassword = process.env.HR_PASSWORD || "Hr@123456";
+  let hrAccount = await Account.findOne({ email: hrEmail });
+  if (!hrAccount) {
+    hrAccount = new Account({
+      fullName: "Nguyễn Minh Anh",
+      email: hrEmail,
+      phone: "0909000002",
+      role: hrRole._id,
+      positionCompany: "Chuyên viên nhân sự",
+      password: await bcrypt.hash(hrPassword, 10),
+      status: "active"
+    });
+    await hrAccount.save();
+  } else {
+    let needUpdate = false;
+    if (hrPassword && !await bcrypt.compare(hrPassword, hrAccount.password)) {
+      hrAccount.password = await bcrypt.hash(hrPassword, 10);
+      needUpdate = true;
+    }
+    if (!hrAccount.role) {
+      hrAccount.role = hrRole._id;
+      needUpdate = true;
+    }
+    if (hrAccount.status !== "active") {
+      hrAccount.status = "active";
+      needUpdate = true;
+    }
+    if (needUpdate) {
+      await hrAccount.save();
+    }
+  }
   const cityNames=["Hà Nội","TP. Hồ Chí Minh","Đà Nẵng","Đà Lạt","Phú Quốc"];
   for(const name of cityNames) if(!await City.findOne({name})) await new City({name}).save();
   let category=await Category.findOne({name:"Tour trong nước"});
