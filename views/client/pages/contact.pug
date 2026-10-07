@@ -12,7 +12,11 @@ block main
     .container
       .contact-grid
         .contact-info-card
-          h2 Thông tin liên hệ
+          .contact-card-header
+            span.contact-card-pill
+              i.fa-solid.fa-headset
+              | Kênh hỗ trợ
+            h2 Thông tin liên hệ
           .contact-item
             i.fa-solid.fa-location-dot
             div
@@ -47,8 +51,25 @@ block main
             button(type="submit") Gửi Yêu Cầu
 
         .contact-map-card
-          h2 Bản đồ vị trí
-          p Trụ sở VietTravel trên Google Maps: #{settingWebsiteInfo.address || "123 Nguyễn Huệ, Quận 1, TP.HCM"}
+          .contact-map-header
+            .contact-map-meta
+              span.contact-card-pill.map-pill
+                i.fa-solid.fa-map-location-dot
+                | Vị trí văn phòng
+              h2 Trụ sở chính VietTravel
+              p.contact-map-address
+                i.fa-solid.fa-location-dot
+                span #{settingWebsiteInfo.address || "123 Nguyễn Huệ, Quận 1, TP.HCM"}
+            a.contact-directions-btn(
+              href="https://maps.google.com/?q=123+Nguy%E1%BB%85n+Hu%E1%BB%87,+Qu%E1%BA%ADn+1,+TP.HCM" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              title="Mở Google Maps chỉ đường"
+            )
+              i.fa-solid.fa-diamond-turn-right
+              span Chỉ đường
+              i.fa-solid.fa-arrow-up-right-from-square
+
           .contact-map-wrapper
             iframe(
               src="https://maps.google.com/maps?q=123+Nguy%E1%BB%85n+Hu%E1%BB%87,+Qu%E1%BA%ADn+1,+TP.HCM&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -59,3 +80,17 @@ block main
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             )
+            .contact-map-overlay-badge
+              i.fa-solid.fa-compass
+              span Google Maps tương tác
+
+          .contact-map-features
+            .contact-feature-item
+              i.fa-solid.fa-square-parking
+              span Bãi đỗ xe ô tô & xe máy
+            .contact-feature-item
+              i.fa-solid.fa-train-subway
+              span Tuyến Metro Bến Thành
+            .contact-feature-item
+              i.fa-solid.fa-bell-concierge
+              span Đón tiếp chu đáo tận tâm
