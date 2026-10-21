@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Target, CheckCircle2, Copy, Search, ExternalLink, Lightbulb, Code2, AlertTriangle } from 'lucide-react';
+import { Target, CheckCircle2, Search, ExternalLink, Lightbulb, Code2, AlertTriangle, HelpCircle } from 'lucide-react';
 
 export const challengesList = [
   {
@@ -9,10 +9,7 @@ export const challengesList = [
     level: "Cơ bản",
     targetPage: "/",
     description: "Bắt nút 'Đăng nhập' trên thanh Header để mở modal tài khoản.",
-    difficultyNote: "Nút không có ID, class bị hash `_authTrigger_btn_primary_1k6v`, chữ bên trong bị tách thành hai thẻ con `<span>Đăng</span>` và `<span>nhập</span>`.",
-    expectedPlaywright: "page.getByRole('button', { name: 'Đăng nhập' })",
-    expectedXPath: "//button[contains(., 'Đăng') and contains(., 'nhập')]",
-    cssSelector: "button._authTrigger_btn_primary_1k6v"
+    difficultyNote: "Nút không dùng ID tĩnh, class name dạng module/hash, chữ bên trong bị tách thành hai thẻ con <span>Đăng</span> và <span>nhập</span>."
   },
   {
     id: 2,
@@ -20,54 +17,39 @@ export const challengesList = [
     level: "Cơ bản",
     targetPage: "/",
     description: "Nhập từ khóa tìm kiếm tour vào ô input ở thanh Header.",
-    difficultyNote: "Input không có name, không có id, chỉ có placeholder dài.",
-    expectedPlaywright: "page.getByPlaceholder('Tìm điểm đến: Tokyo, Sapa, Paris, Phú Quốc...')",
-    expectedXPath: "//input[contains(@placeholder, 'Tìm điểm đến')]",
-    cssSelector: "input._inputField_naked_3p8x"
+    difficultyNote: "Thẻ input không có thuộc tính name, không có id, chỉ có placeholder dài và nằm trong container custom."
   },
   {
     id: 3,
     title: "Huy hiệu đếm số lượng giỏ hàng",
     level: "Cơ bản",
     targetPage: "/",
-    description: "Lấy số lượng hiển thị trên badge đỏ của icon Giỏ hàng.",
-    difficultyNote: "Nằm lồng bên trong thẻ `a[href='/cart']`.",
-    expectedPlaywright: "page.locator('a[href=\"/cart\"]').locator('._cartBadge_counter_3x')",
-    expectedXPath: "//a[@href='/cart']//span[contains(@class, 'cartBadge')]",
-    cssSelector: "a._cartAction_btn_4m7p ._cartBadge_counter_3x"
+    description: "Lấy giá trị số lượng hiển thị trên badge đỏ của icon Giỏ hàng.",
+    difficultyNote: "Nằm lồng sâu bên trong thẻ đường dẫn giỏ hàng và không có id độc lập."
   },
   {
     id: 4,
-    title: "Click 'Đặt tour' của tour 'Tokyo - Núi Phú Sĩ'",
+    title: "Nút đặt tour của tour 'Tokyo - Núi Phú Sĩ'",
     level: "Trung bình",
     targetPage: "/",
-    description: "Trên trang chủ có nhiều tour card với các nút 'Đặt tour' giống hệt nhau. Bạn cần bấm đúng nút của tour Tokyo.",
-    difficultyNote: "Mọi thẻ card đều dùng chung class `_btnOrder_action_primary`. Phải dùng relative locator hoặc ancestor navigation từ tiêu đề tour.",
-    expectedPlaywright: "page.locator('article[data-component=\"tour-card\"]').filter({ hasText: 'Tokyo - Núi Phú Sĩ' }).getByRole('button', { name: 'Đặt tour' })",
-    expectedXPath: "//article[contains(@class, '_tourCard_')][.//a[contains(text(), 'Tokyo')]]//button[contains(., 'Đặt')]",
-    cssSelector: "article[data-tour-slug='tokyo-nui-phu-si'] button._btnOrder_action_primary"
+    description: "Trên trang chủ có nhiều tour card với các nút đặt tour giống hệt nhau. Bạn cần bấm đúng nút của riêng tour Tokyo.",
+    difficultyNote: "Mọi tour card trên trang đều dùng chung class name và cùng chứa text. Bắt buộc phải áp dụng kỹ thuật scoping theo container hoặc điều hướng ancestor từ tiêu đề tour."
   },
   {
     id: 5,
     title: "Huy hiệu giảm giá của tour 'Sapa Mùa Mây'",
     level: "Trung bình",
     targetPage: "/",
-    description: "Lấy nội dung badge giảm giá `⚡ GIẢM -7%` của tour Sapa.",
-    difficultyNote: "Badge nằm ở góc trên bên trái của ảnh tour, cần xác định đúng card Sapa.",
-    expectedPlaywright: "page.locator('article').filter({ hasText: 'Sapa Mùa Mây' }).locator('._discountBadge_top_9v')",
-    expectedXPath: "//article[contains(., 'Sapa Mùa Mây')]//div[contains(@class, 'discountBadge')]",
-    cssSelector: "article[data-tour-slug='sapa-mua-may'] ._discountBadge_top_9v"
+    description: "Lấy nội dung badge giảm giá (ví dụ: '⚡ GIẢM -7%') của tour Sapa.",
+    difficultyNote: "Huy hiệu nằm ở góc trên ảnh tour của card Sapa. Cần định vị chính xác container của tour này mà không bắt nhầm sang tour khác."
   },
   {
     id: 6,
-    title: "Giá tiền hiện tại của tour 'Paris - Kinh Đô Ánh Sáng'",
+    title: "Giá tiền khuyến mãi của tour 'Paris - Kinh Đô Ánh Sáng'",
     level: "Trung bình",
     targetPage: "/",
-    description: "Đọc số tiền khuyến mãi nổi bật (màu đỏ) của tour Paris.",
-    difficultyNote: "Trong card có cả giá cũ gạch ngang và giá mới, cần chọn đúng phần tử giá mới.",
-    expectedPlaywright: "page.locator('article').filter({ hasText: 'Paris' }).locator('._currentVal_highlight')",
-    expectedXPath: "//article[contains(., 'Paris')]//span[contains(@class, 'currentVal')]",
-    cssSelector: "article[data-tour-slug='paris-kinh-do-anh-sang'] ._currentVal_highlight"
+    description: "Đọc số tiền khuyến mãi nổi bật (giá mới) của tour Paris.",
+    difficultyNote: "Trong mỗi card có cả giá cũ gạch ngang và giá mới, cần chọn chính xác phần tử mang giá mới của đúng tour Paris."
   },
   {
     id: 7,
@@ -75,32 +57,23 @@ export const challengesList = [
     level: "Khó",
     targetPage: "/cart",
     description: "Tăng số lượng tour 'Tokyo - Núi Phú Sĩ' trong bảng giỏ hàng.",
-    difficultyNote: "Mỗi hàng trong table đều có nút `+` giống nhau. Cần tìm theo hàng `tr` chứa chữ Tokyo.",
-    expectedPlaywright: "page.locator('tr').filter({ hasText: 'Tokyo' }).getByRole('button', { name: '+' })",
-    expectedXPath: "//tr[contains(., 'Tokyo')]//button[contains(@class, '_btnQty_inc') or text()='+']",
-    cssSelector: "tr[data-tour-title*='Tokyo'] button._btnQty_inc"
+    difficultyNote: "Mỗi hàng trong table đều có nút '+' mang class và chữ giống nhau. Bắt buộc phải xác định hàng <tr> chứa tên tour trước, rồi tìm nút '+' bên trong hàng đó."
   },
   {
     id: 8,
     title: "Nút thùng rác 'Xóa' của tour thứ 2 trong giỏ hàng",
     level: "Khó",
     targetPage: "/cart",
-    description: "Bấm nút xóa tour thứ 2 khỏi bảng giỏ hàng.",
-    difficultyNote: "Nút xóa chỉ có icon SVG thùng rác, không chứa chữ hiển thị trực tiếp.",
-    expectedPlaywright: "page.locator('tbody tr').nth(1).locator('button._btnDelete_item_icon')",
-    expectedXPath: "(//tbody//tr)[2]//button[contains(@class, 'btnDelete') or @title='Xóa tour khỏi giỏ']",
-    cssSelector: "tbody tr:nth-child(2) button._btnDelete_item_icon"
+    description: "Bấm nút xóa tour thứ 2 khỏi danh sách giỏ hàng.",
+    difficultyNote: "Nút xóa chỉ hiển thị icon SVG thùng rác, không chứa chữ trực tiếp. Cần định vị theo chỉ số hàng và cấu trúc con của hàng đó."
   },
   {
     id: 9,
     title: "Radio filter 'Từ 5 - 10 triệu' ở trang danh sách tour",
     level: "Khó",
-    targetPage: "/category/all",
+    targetPage: "/tours",
     description: "Chọn khoảng giá 'Từ 5 - 10 triệu' ở sidebar bộ lọc.",
-    difficultyNote: "Thẻ `input[type='radio']` bị ẩn CSS (opacity 0 hoặc hidden), cần click vào nhãn `label` hoặc `span` bọc ngoài.",
-    expectedPlaywright: "page.getByLabel('Từ 5 - 10 triệu')",
-    expectedXPath: "//label[contains(., 'Từ 5 - 10 triệu')]//input | //label[contains(., 'Từ 5 - 10 triệu')]",
-    cssSelector: "input[value='5to10']"
+    difficultyNote: "Thẻ <input type='radio'> bị ẩn CSS, click trực tiếp vào input có thể bị fail. Cần xác định nhãn hoặc container bọc ngoài để trigger sự kiện click."
   },
   {
     id: 10,
@@ -108,10 +81,7 @@ export const challengesList = [
     level: "Khó",
     targetPage: "/",
     description: "Mở dropdown chọn điểm khởi hành ở Hero Search và chọn 'Hà Nội'.",
-    difficultyNote: "Không phải thẻ `<select>` thông thường, là custom component `div[role='combobox']` và `li[role='option']`.",
-    expectedPlaywright: "await page.getByRole('combobox').click(); await page.getByRole('option', { name: 'Hà Nội' }).click();",
-    expectedXPath: "//div[@role='combobox'] -> sau đó //li[@role='option' and text()='Hà Nội']",
-    cssSelector: "div._comboboxTrigger_box -> li._optionItem_row:has-text('Hà Nội')"
+    difficultyNote: "Không phải thẻ <select> chuẩn HTML, mà là custom component kết hợp role='combobox' và role='option'. Cần tương tác tuần tự 2 bước: mở dropdown rồi chọn option."
   },
   {
     id: 11,
@@ -119,21 +89,15 @@ export const challengesList = [
     level: "Cực khó",
     targetPage: "/contact",
     description: "Nhập số điện thoại vào form liên hệ.",
-    difficultyNote: "Input không có id, nằm trong `div` con nằm sau thẻ `label`. Phải dùng following-sibling hoặc container wrapping.",
-    expectedPlaywright: "page.locator('div._contactFormGroup').filter({ has: page.getByText('Số điện thoại liên hệ') }).locator('input')",
-    expectedXPath: "//label[contains(., 'Số điện thoại')]/following-sibling::div//input",
-    cssSelector: "div._contactFormGroup:has(label:has-text('Số điện thoại')) input"
+    difficultyNote: "Thẻ input không có thuộc tính id, thẻ <label> không có thuộc tính 'for'. Buộc phải dùng following-sibling trong XPath hoặc filter container trong Playwright."
   },
   {
     id: 12,
     title: "Tăng số lượng 'Trẻ em' trong widget Chi Tiết Tour",
     level: "Cực khó",
     targetPage: "/tour/tokyo-nui-phu-si",
-    description: "Bấm nút `+` để thêm 1 vé trẻ em ở cột bên phải trang chi tiết tour.",
-    difficultyNote: "Có 3 hàng tương tự nhau: Người lớn, Trẻ em, Em bé. Cần định vị chính xác container của 'Trẻ em'.",
-    expectedPlaywright: "page.locator('div[data-passenger-type=\"child\"]').getByRole('button', { name: '+' })",
-    expectedXPath: "//div[contains(@class, 'passengerRow')][.//span[contains(., 'Trẻ em')]]//button[text()='+']",
-    cssSelector: "div[data-passenger-type='child'] button._btnInc"
+    description: "Bấm nút '+' để thêm 1 vé trẻ em ở cột bên phải trang chi tiết tour.",
+    difficultyNote: "Có 3 hàng cấu trúc tương tự nhau: Người lớn, Trẻ em, Em bé. Bắt buộc phải định vị chính xác khối chứa text 'Trẻ em' trước khi click nút '+'."
   },
   {
     id: 13,
@@ -141,49 +105,33 @@ export const challengesList = [
     level: "Cực khó",
     targetPage: "/",
     description: "Mở modal đăng nhập và click vào ô 'Ghi nhớ đăng nhập'.",
-    difficultyNote: "Checkbox nằm trong modal overlay, input bị ẩn và thay bằng custom span.",
-    expectedPlaywright: "page.locator('label._checkboxWrap_3a').filter({ hasText: 'Ghi nhớ đăng nhập' })",
-    expectedXPath: "//div[@role='dialog']//label[contains(., 'Ghi nhớ đăng nhập')]",
-    cssSelector: "div[role='dialog'] label._checkboxWrap_3a"
+    difficultyNote: "Checkbox nằm trong modal popup, input native bị ẩn và thay thế bằng custom indicator."
   },
   {
     id: 14,
     title: "Upload file CV trong Modal Ứng tuyển",
     level: "Cực khó",
     targetPage: "/careers",
-    description: "Mở form ứng tuyển vị trí 'Kỹ Sư Automation Test' và tải lên file CV.",
-    difficultyNote: "Thẻ `input[type='file']` nằm lồng trong dropzone. Trong Playwright dùng `setInputFiles()`.",
-    expectedPlaywright: "await page.locator('input[type=\"file\"]').setInputFiles('path/to/cv.pdf')",
-    expectedXPath: "//div[@role='dialog']//input[@type='file']",
-    cssSelector: "input._fileControl_input"
+    description: "Mở form ứng tuyển vị trí bất kỳ và thực hiện upload file CV mẫu.",
+    difficultyNote: "Thẻ input[type='file'] bị ẩn trong vùng kéo thả file (dropzone). Cần chọn đúng thẻ input ẩn để thực hiện gắn file qua phương thức tự động hóa."
   },
   {
     id: 15,
     title: "Nút 'Chỉ đường' trên bản đồ Google Maps trang Liên Hệ",
     level: "Trung bình",
     targetPage: "/contact",
-    description: "Bắt link 'Chỉ đường' mở tab Google Maps chỉ dẫn tới trụ sở.",
-    difficultyNote: "Thẻ `a` có thuộc tính `target='_blank'`, chứa text và icon SVG chỉ đường.",
-    expectedPlaywright: "page.getByRole('link', { name: 'Chỉ đường' })",
-    expectedXPath: "//a[contains(@class, 'btnDirections') and contains(., 'Chỉ đường')]",
-    cssSelector: "a._btnDirections_link"
+    description: "Bắt link 'Chỉ đường' để mở chỉ dẫn bản đồ tới trụ sở công ty.",
+    difficultyNote: "Thẻ <a> nằm lồng trong floating card trên iframe bản đồ, chứa icon SVG và text."
   }
 ];
 
 export default function LocatorChallengesPage() {
-  const [copiedId, setCopiedId] = useState(null);
   const [filterLevel, setFilterLevel] = useState('all');
 
   // Live Selector Tester State
   const [testQuery, setTestQuery] = useState('');
   const [queryType, setQueryType] = useState('xpath'); // 'xpath' | 'css'
   const [testResult, setTestResult] = useState(null);
-
-  const handleCopy = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
 
   const handleTestSelector = (e) => {
     e.preventDefault();
@@ -206,23 +154,19 @@ export default function LocatorChallengesPage() {
         elements = Array.from(document.querySelectorAll(testQuery));
       }
 
-      // Highlight matched elements
-      document.querySelectorAll('._qa_tester_highlight').forEach(el => {
-        el.classList.remove('_qa_tester_highlight');
-      });
-
-      elements.forEach(el => {
+      // Visual highlight matching elements temporarily
+      document.querySelectorAll('._qa_inspect_highlight').forEach(el => el.classList.remove('_qa_inspect_highlight'));
+      elements.slice(0, 10).forEach(el => {
         if (el && el.classList) {
-          el.classList.add('_qa_tester_highlight');
+          el.classList.add('_qa_inspect_highlight');
         }
       });
 
       setTestResult({
         count: elements.length,
         items: elements.slice(0, 5).map(el => ({
-          tag: el.tagName?.toLowerCase(),
-          text: (el.innerText || el.textContent || '').trim().slice(0, 60),
-          className: el.className?.toString().slice(0, 40)
+          tag: el.tagName?.toLowerCase() || 'node',
+          text: (el.textContent || '').trim().slice(0, 40)
         })),
         error: null
       });
@@ -245,11 +189,10 @@ export default function LocatorChallengesPage() {
       <div className="_challengesHero_banner">
         <div className="_container_inner_wrap _textCenter">
           <span className="_eyebrow_pill">PLAYWRIGHT & XPATH TESTING LAB</span>
-          <h1 className="_hero_h1">15 Thử Thách Bắt Locator Trong React</h1>
+          <h1 className="_hero_h1">15 Bài Tập Thực Hành Bắt Locator (Tự Luyện)</h1>
           <p className="_hero_lead">
-            Được thiết kế mô phỏng các bài toán hóc búa thực tế trong các dự án React SPA: 
-            <strong> hashed classnames</strong>, <strong>split text nodes</strong>, <strong>relative grid locators</strong>, 
-            <strong>sibling/ancestor navigation</strong> và <strong>custom non-native controls</strong>.
+            Các bài tập được thiết kế mô phỏng môi trường thực tế không có ID tĩnh, class name động,
+            văn bản phân mảnh và các component phức tạp để bạn tự thử sức tư duy và kiểm chứng locator.
           </p>
         </div>
       </div>
@@ -261,7 +204,7 @@ export default function LocatorChallengesPage() {
             <Code2 size={22} className="_testerIcon" />
             <div>
               <h3>Công Cụ Thử Nghiệm Selector Trực Tiếp (Live Selector Tester)</h3>
-              <p>Gõ XPath hoặc CSS selector vào đây để kiểm tra trực tiếp số lượng phần tử khớp trên trang này!</p>
+              <p>Gõ câu lệnh XPath hoặc CSS Selector của bạn vào đây để kiểm tra ngay số lượng phần tử khớp trên trang:</p>
             </div>
           </div>
 
@@ -288,7 +231,7 @@ export default function LocatorChallengesPage() {
                 type="text"
                 value={testQuery}
                 onChange={(e) => setTestQuery(e.target.value)}
-                placeholder={queryType === 'xpath' ? "//button[contains(., 'Đăng nhập')]" : "button._btnOrder_action_primary"}
+                placeholder={queryType === 'xpath' ? "Nhập câu lệnh XPath bạn muốn thử..." : "Nhập CSS selector bạn muốn thử..."}
                 className="_testerInput_control"
               />
             </div>
@@ -312,7 +255,7 @@ export default function LocatorChallengesPage() {
                   <div className="_resultSummary">
                     <CheckCircle2 size={18} />
                     <strong>Tìm thấy {testResult.count} phần tử khớp trên trang!</strong>
-                    {testResult.count > 0 && <span className="_highlightNotice">(Các phần tử đã được viền phát sáng)</span>}
+                    {testResult.count > 0 && <span className="_highlightNotice">(Các phần tử khớp đã được viền phát sáng)</span>}
                   </div>
                   {testResult.items.length > 0 && (
                     <ul className="_resultSnippetList">
@@ -331,7 +274,7 @@ export default function LocatorChallengesPage() {
 
         {/* Level Filters */}
         <div className="_levelFilter_row">
-          <span className="_filterLabel">Lọc theo độ khó:</span>
+          <span className="_filterLabel">Lọc theo cấp độ:</span>
           {['all', 'Cơ bản', 'Trung bình', 'Khó', 'Cực khó'].map(lvl => (
             <button
               key={lvl}
@@ -339,7 +282,7 @@ export default function LocatorChallengesPage() {
               onClick={() => setFilterLevel(lvl)}
               className={`_levelPill_btn ${filterLevel === lvl ? '_is_active' : ''}`}
             >
-              {lvl === 'all' ? 'Tất cả (15)' : lvl}
+              {lvl === 'all' ? 'Tất cả (15 bài)' : lvl}
             </button>
           ))}
         </div>
@@ -351,7 +294,7 @@ export default function LocatorChallengesPage() {
               <div className="_challengeCard_top">
                 <div className="_challengeIndex_badge">
                   <Target size={14} />
-                  <span>Thử thách #{ch.id}</span>
+                  <span>Bài tập #{ch.id}</span>
                 </div>
                 <span className={`_difficultyTag _tag_${ch.level.toLowerCase().replace(' ', '_')}`}>
                   {ch.level}
@@ -359,51 +302,18 @@ export default function LocatorChallengesPage() {
               </div>
 
               <h3 className="_challengeTitle">{ch.title}</h3>
-              <p className="_challengeDesc">{ch.description}</p>
+              <p className="_challengeDesc"><strong>Yêu cầu:</strong> {ch.description}</p>
 
               {/* Challenge Caveat Note */}
               <div className="_challengeNote_box">
                 <Lightbulb size={16} className="_noteIcon" />
-                <p><strong>Điểm khó:</strong> {ch.difficultyNote}</p>
-              </div>
-
-              {/* Code Solution Accordion */}
-              <div className="_solutionBlock">
-                <div className="_solutionSnippet">
-                  <div className="_snippetHeader">
-                    <span>Playwright Locator:</span>
-                    <button
-                      type="button"
-                      onClick={() => handleCopy(ch.expectedPlaywright, `pw-${ch.id}`)}
-                      className="_btnCopyCode"
-                      title="Copy Playwright code"
-                    >
-                      {copiedId === `pw-${ch.id}` ? "Đã copy!" : <Copy size={13} />}
-                    </button>
-                  </div>
-                  <pre><code>{ch.expectedPlaywright}</code></pre>
-                </div>
-
-                <div className="_solutionSnippet">
-                  <div className="_snippetHeader">
-                    <span>XPath Chuẩn:</span>
-                    <button
-                      type="button"
-                      onClick={() => handleCopy(ch.expectedXPath, `xp-${ch.id}`)}
-                      className="_btnCopyCode"
-                      title="Copy XPath"
-                    >
-                      {copiedId === `xp-${ch.id}` ? "Đã copy!" : <Copy size={13} />}
-                    </button>
-                  </div>
-                  <pre><code>{ch.expectedXPath}</code></pre>
-                </div>
+                <p><strong>Bẫy DOM:</strong> {ch.difficultyNote}</p>
               </div>
 
               {/* Jump to target page link */}
               <div className="_cardFooter_action">
                 <Link to={ch.targetPage} className="_btnJumpToTarget">
-                  <span>Mở trang thực hành ({ch.targetPage})</span>
+                  <span>Đi đến trang thực hành ({ch.targetPage})</span>
                   <ExternalLink size={14} />
                 </Link>
               </div>
