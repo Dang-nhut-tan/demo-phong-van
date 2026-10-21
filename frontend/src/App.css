@@ -1,0 +1,1464 @@
+/* ==========================================================================
+   VietTravel Luxury React - $10,000 Grade UI with Engineered QA Locators
+   ========================================================================== */
+
+/* Layout Foundation */
+._appRoot_layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+._appMain_content {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Header & Navigation
+   -------------------------------------------------------------------------- */
+._vt_header_main_9x8a {
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+}
+
+._topBar_sub_4k2m {
+  background: #090e1a;
+  color: #94a3b8;
+  font-size: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+._topBar_sub_4k2m ._container_inner_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._topBar_left_group {
+  display: flex;
+  gap: 22px;
+}
+
+._topBar_item_pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+._topBar_item_pill strong {
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+._icon_inline {
+  color: #e11d48;
+}
+
+._challenge_banner_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #4502C7 0%, #d946ef 100%);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 11.5px;
+  box-shadow: 0 2px 10px rgba(69, 2, 199, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+._challenge_banner_link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(217, 70, 239, 0.4);
+}
+
+._mainHeader_nav_wrap {
+  padding: 14px 0;
+}
+
+._header_flex_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Brand Logo */
+._brandLogo_link_8c2p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+._logoMark_circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4502C7 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(69, 2, 199, 0.3);
+}
+
+._logoText_wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+._brandName_primary {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+._brandName_accent {
+  color: #e11d48;
+}
+
+._brandTagline_tiny {
+  font-size: 10px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-top: 3px;
+}
+
+/* Search Form */
+._searchForm_container_7m1k {
+  flex: 1;
+  max-width: 360px;
+}
+
+._searchInput_outer_shell {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border: 1.5px solid transparent;
+  border-radius: 30px;
+  padding: 4px 6px 4px 16px;
+  transition: all 0.2s ease;
+}
+
+._searchInput_outer_shell:focus-within {
+  background: #fff;
+  border-color: #4502C7;
+  box-shadow: 0 0 0 3px rgba(69, 2, 199, 0.12);
+}
+
+._inputField_naked_3p8x {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 13.5px;
+  color: #1e293b;
+}
+
+._btnSearch_icon_wrap_6v4n {
+  border: none;
+  background: #4502C7;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+._btnSearch_icon_wrap_6v4n:hover {
+  background: #320194;
+}
+
+/* Navigation Links */
+._mainNav_links_5r3q {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+._navItem_anchor_9a1z {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #334155;
+  transition: color 0.2s;
+  position: relative;
+  padding: 6px 0;
+}
+
+._navItem_anchor_9a1z:hover {
+  color: #4502C7;
+}
+
+/* Right Actions Group */
+._rightActions_group_2b8k {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+._cartAction_btn_4m7p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+._cartAction_btn_4m7p:hover {
+  border-color: #4502C7;
+  background: #f4efff;
+}
+
+._iconSlot_cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+._bag_svg_node {
+  color: #4502C7;
+}
+
+._cartBadge_counter_3x {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #e11d48;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+}
+
+._cartText_label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+._authTrigger_btn_primary_1k6v {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4502C7 0%, #3b82f6 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(69, 2, 199, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+._authTrigger_btn_primary_1k6v:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(69, 2, 199, 0.4);
+}
+
+/* User Popover */
+._userDropdown_wrapper_8d3m { position: relative; }
+._userAvatar_btn_5k9z {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: #f1f5f9;
+  padding: 5px 12px 5px 6px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+._avatarInitial {
+  width: 32px;
+  height: 32px;
+  background: #4502C7;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+._userName_label { font-size: 13.5px; font-weight: 600; color: #1e293b; }
+
+._userPopover_card_9f1a {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  z-index: 110;
+}
+._popoverHeader strong { display: block; font-size: 14px; color: #0f172a; }
+._popoverHeader small { color: #64748b; font-size: 12px; }
+._divider_hairline { border: 0; border-top: 1px solid #f1f5f9; margin: 8px 0; }
+._popoverItem_link {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+}
+._popoverItem_link:hover { background: #f8fafc; color: #4502C7; }
+._popoverItem_btnDanger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: #e11d48;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   HERO BANNER - $10,000 Luxury Grade Canvas
+   -------------------------------------------------------------------------- */
+._heroSection_luxury_canvas {
+  position: relative;
+  background: linear-gradient(145deg, #070b14 0%, #111827 50%, #1e1b4b 100%);
+  padding: 80px 0 110px;
+  color: #fff;
+  overflow: hidden;
+}
+
+._heroGradient_mesh_ambient {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(69, 2, 199, 0.3) 0%, rgba(217, 70, 239, 0.15) 45%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+._heroContent_constrained {
+  position: relative;
+  text-align: center;
+  max-width: 960px;
+}
+
+._heroEyebrow_capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fce7f3;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+._gold_sparkle_anim {
+  color: #fbbf24;
+}
+
+._heroHeadline_luxury {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  letter-spacing: -1px;
+}
+
+._headline_gradient_luxury {
+  background: linear-gradient(135deg, #60a5fa 0%, #ec4899 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+._heroSubtext_refined {
+  font-size: 17px;
+  color: #cbd5e1;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* Luxury Multi-Tab Search Card */
+._searchWidget_luxury_card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #0f172a;
+  text-align: left;
+}
+
+._searchTabs_luxury_bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+._tabSearch_btn {
+  border: none;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+._tabSearch_btn._active_tab,
+._tabSearch_btn:hover {
+  background: #4502C7;
+  color: #fff;
+}
+
+._searchInputs_luxury_grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.6fr 1.1fr 1.1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+._fieldModule_wrap {
+  position: relative;
+}
+
+._fieldLabel_luxury {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+._labelIcon_accent {
+  color: #4502C7;
+}
+
+._triggerBox_luxury,
+._inputShell_luxury {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 11px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s;
+}
+
+._triggerBox_luxury:hover,
+._inputShell_luxury:focus-within {
+  background: #fff;
+  border-color: #4502C7;
+  box-shadow: 0 0 0 3px rgba(69, 2, 199, 0.1);
+}
+
+._triggerValue_bold {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+._chevron_toggle {
+  color: #64748b;
+  transition: transform 0.2s;
+}
+
+._chevron_toggle._open {
+  transform: rotate(180deg);
+}
+
+._comboboxDropdown_portal {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  z-index: 60;
+  overflow: hidden;
+}
+
+._comboboxOption_item {
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+._comboboxOption_item:hover,
+._comboboxOption_item._is_selected {
+  background: #f4efff;
+  color: #4502C7;
+}
+
+._nakedControl_input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Custom interactive DIV Stepper */
+._stepperCluster_luxury {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 5px 8px;
+}
+
+._stepperDiv_action {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+}
+
+._stepperDiv_action:hover {
+  background: #4502C7;
+  color: #fff;
+}
+
+._stepperCount_display {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Primary Search CTA: Custom DIV with fragmented text */
+._btnHeroSearch_primary_9x8f {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4502C7 0%, #ec4899 100%);
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  height: 48px;
+  box-shadow: 0 8px 20px rgba(69, 2, 199, 0.35);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+._btnHeroSearch_primary_9x8f:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(236, 72, 153, 0.45);
+}
+
+._btnSlotText {
+  display: inline-flex;
+}
+
+/* --------------------------------------------------------------------------
+   BENTO GRID - Trending Destinations
+   -------------------------------------------------------------------------- */
+._trendingBento_section {
+  padding: 70px 0;
+  background: #ffffff;
+}
+
+._sectionHeader_luxury_center {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+._sectionKicker_pill {
+  display: inline-block;
+  color: #4502C7;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: #f4efff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+._sectionHeadline_bold {
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin: 0 0 8px;
+}
+
+._sectionSub_muted {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0;
+}
+
+._bentoGrid_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 240px;
+  gap: 20px;
+}
+
+._bentoTile_card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+}
+
+._bentoTile_card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+._tile_large {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+._tile_wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+._bentoCover_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+._bentoTile_card:hover ._bentoCover_img {
+  transform: scale(1.08);
+}
+
+._bentoGradient_overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.2) 60%, transparent 100%);
+}
+
+._bentoContent_meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  color: #fff;
+  z-index: 2;
+}
+
+._bentoTag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+._bentoContent_meta h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+._bentoContent_meta p {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin: 0 0 12px;
+}
+
+._bentoBottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._bentoPrice {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #fde047;
+}
+
+._bentoLinkPill {
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   FLASH SALE BANNER & LIVE COUNTDOWN
+   -------------------------------------------------------------------------- */
+._flashSale_luxury_section {
+  padding: 60px 0;
+  background: #f8fafc;
+}
+
+._flashSale_banner_box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+  border-radius: 24px;
+  padding: 36px 30px;
+  box-shadow: 0 20px 50px rgba(69, 2, 199, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+._flashSale_header_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+._flashBadge_pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e11d48;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  animation: pulseNeon 2s infinite alternate;
+}
+
+@keyframes pulseNeon {
+  0% { box-shadow: 0 0 8px rgba(225, 29, 72, 0.5); }
+  100% { box-shadow: 0 0 20px rgba(225, 29, 72, 0.9); }
+}
+
+._flashHeader_left h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+}
+
+._countdownClock_cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+._clockLabel {
+  font-size: 13.5px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+._clockBoxes_row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+._timeBox {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 6px 10px;
+  text-align: center;
+  min-width: 48px;
+}
+
+._timeBox strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fde047;
+  line-height: 1;
+}
+
+._timeBox small {
+  font-size: 10px;
+  color: #cbd5e1;
+  text-transform: uppercase;
+}
+
+._colon {
+  font-weight: 800;
+  font-size: 18px;
+  color: #fde047;
+}
+
+/* --------------------------------------------------------------------------
+   STANDARD SECTIONS (Domestic & International)
+   -------------------------------------------------------------------------- */
+._sectionStandard_block {
+  padding: 70px 0;
+  background: #ffffff;
+}
+
+._sectionStandard_block._bg_subtle {
+  background: #f8fafc;
+}
+
+._sectionTitle_row_luxury {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+._subKicker_luxury {
+  display: inline-block;
+  color: #4502C7;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+._mainH2_luxury {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+}
+
+._leadText_luxury {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0;
+}
+
+._btnSeeAll_luxury_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4502C7;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+._btnSeeAll_luxury_link:hover {
+  text-decoration: underline;
+}
+
+/* Tours Grid Layouts */
+._toursGrid_responsive_4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+._toursGrid_responsive_3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   LUXURY TOUR CARD COMPONENT ($10,000 Level + QA Locators)
+   -------------------------------------------------------------------------- */
+._luxuryTourCard_root_3b8k {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+._luxuryTourCard_root_3b8k:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(69, 2, 199, 0.12);
+  border-color: rgba(69, 2, 199, 0.25);
+}
+
+._cardVisual_container_8m2q {
+  position: relative;
+  aspect-ratio: 16/11;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+
+._visualAnchor_full {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+._coverImage_parallax {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+._luxuryTourCard_root_3b8k:hover ._coverImage_parallax {
+  transform: scale(1.08);
+}
+
+._visualGradient_overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.75) 0%, transparent 55%);
+}
+
+/* Guaranteed Floating Discount Badge: Top-Left Layered */
+._floatingDiscount_pill_7x {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  z-index: 10;
+  background: linear-gradient(135deg, #DA0808 0%, #FF416C 100%);
+  border-radius: 0 24px 24px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px 6px 9px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(218, 8, 8, 0.45);
+  pointer-events: none;
+}
+
+._boltFlash {
+  color: #fde047;
+  font-size: 13px;
+}
+
+._topRightBadge_cluster {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+._ratingPill_frosted {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+._starIcon_gold {
+  color: #fbbf24;
+}
+
+._heartAction_btn_custom {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+._heartAction_btn_custom:hover,
+._heartAction_btn_custom._favorited {
+  background: #fff;
+  color: #e11d48;
+}
+
+._heart_svg_fill {
+  fill: #e11d48;
+}
+
+._mediaBottom_bar {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._destination_pill_glass,
+._vehicle_pill_glass {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+._pinIcon_accent {
+  color: #f43f5e;
+}
+
+._shieldIcon {
+  color: #60a5fa;
+}
+
+/* Card Body */
+._cardBody_luxury_content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+._cardTitle_luxury_h3 {
+  font-size: 15.5px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  height: 44px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+._titleLink_smooth {
+  color: #0f172a;
+  transition: color 0.2s;
+}
+
+._titleLink_smooth:hover {
+  color: #4502C7;
+}
+
+._specsPills_row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+._specItem_pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #eef2f6;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11.5px;
+  color: #475569;
+  font-weight: 600;
+}
+
+._specIcon {
+  color: #94a3b8;
+}
+
+/* Seats Remaining with Progress Bar */
+._seatsCapacity_block {
+  margin-bottom: 14px;
+}
+
+._capacityHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: #64748b;
+  margin-bottom: 5px;
+}
+
+._capacityLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+._capacityCount {
+  color: #b91c1c;
+  font-weight: 800;
+}
+
+._capacityTrack_bar {
+  height: 4px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+._capacityFill_progress {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #e11d48 0%, #f59e0b 100%);
+}
+
+/* Luxury Pricing Container */
+._pricingContainer_luxury {
+  margin-top: auto;
+  margin-bottom: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+._originalPrice_line {
+  font-size: 12px;
+  color: #94a3b8;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+._mainPrice_line {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+._pricePrefix {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+._grandPrice_num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #e11d48;
+  letter-spacing: -0.5px;
+}
+
+._grandPrice_unit {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e11d48;
+}
+
+._perPerson_sub {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-left: 2px;
+}
+
+/* Actions Row - Tricky Locators for Automation QA */
+._cardActions_cluster_row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 8px;
+}
+
+._btnBooking_cta_accent {
+  background: linear-gradient(135deg, #4502C7 0%, #ec4899 100%);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(69, 2, 199, 0.25);
+  transition: all 0.2s;
+  user-select: none;
+}
+
+._btnBooking_cta_accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(69, 2, 199, 0.4);
+}
+
+._btnBooking_cta_accent._is_booked {
+  background: #10b981;
+}
+
+._btnExplore_cta_ghost {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+  border-radius: 10px;
+  padding: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+._btnExplore_cta_ghost:hover {
+  border-color: #4502C7;
+  color: #4502C7;
+  background: #f4efff;
+}
+
+._btnSlot_flex {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   5-STAR GUARANTEES SECTION
+   -------------------------------------------------------------------------- */
+._luxuryGuarantees_section {
+  padding: 60px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+._guaranteesGrid_4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+._guaranteeCard_item {
+  text-align: center;
+  padding: 24px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid #eef2f6;
+  transition: transform 0.2s;
+}
+
+._guaranteeCard_item:hover {
+  transform: translateY(-4px);
+  border-color: #4502C7;
+}
+
+._guaranteeIcon_circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f4efff;
+  color: #4502C7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+._guaranteeCard_item h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+._guaranteeCard_item p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   PLAYWRIGHT ARENA CALLOUT BANNER
+   -------------------------------------------------------------------------- */
+._locatorLab_callout_banner {
+  background: linear-gradient(135deg, #090e1a 0%, #1e1b4b 50%, #4502C7 100%);
+  color: #fff;
+  padding: 45px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+._calloutFlex_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+._labTag {
+  background: #e11d48;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+._calloutLeft_text h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+._calloutLeft_text p {
+  font-size: 14px;
+  color: #cbd5e1;
+  max-width: 650px;
+  margin: 0;
+}
+
+._btnLaunchLab_luxury {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #0f172a;
+  padding: 13px 26px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14.5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+._btnLaunchLab_luxury:hover {
+  background: #fde047;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  ._searchInputs_luxury_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  ._fieldModule_wrap._mod_submit {
+    grid-column: span 2;
+  }
+  ._btnHeroSearch_primary_9x8f {
+    width: 100%;
+    justify-content: center;
+  }
+  ._toursGrid_responsive_4col,
+  ._toursGrid_responsive_3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ._bentoGrid_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ._tile_large,
+  ._tile_wide {
+    grid-column: span 2;
+  }
+  ._guaranteesGrid_4col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  ._hide_mobile {
+    display: none !important;
+  }
+  ._searchForm_container_7m1k {
+    display: none;
+  }
+  ._searchInputs_luxury_grid {
+    grid-template-columns: 1fr;
+  }
+  ._fieldModule_wrap._mod_submit {
+    grid-column: span 1;
+  }
+  ._heroHeadline_luxury {
+    font-size: 32px;
+  }
+  ._toursGrid_responsive_4col,
+  ._toursGrid_responsive_3col {
+    grid-template-columns: 1fr;
+  }
+  ._bentoGrid_container {
+    grid-template-columns: 1fr;
+  }
+  ._tile_large,
+  ._tile_wide {
+    grid-column: span 1;
+  }
+  ._guaranteesGrid_4col {
+    grid-template-columns: 1fr;
+  }
+  ._calloutFlex_row {
+    flex-direction: column;
+    text-align: center;
+  }
+}

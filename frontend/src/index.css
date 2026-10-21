@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --vt-primary: #4502C7;
+  --vt-primary-dark: #320194;
+  --vt-primary-light: #f4efff;
+  --vt-accent-red: #D80027;
+  --vt-navy: #1b3550;
+  --vt-gray-bg: #f8fafc;
+  --vt-card-border: #eef2f6;
+  --vt-text-body: #475569;
+  --vt-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--vt-font-family);
+  background-color: var(--vt-gray-bg);
+  color: var(--vt-text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Global container utility */
+._container_inner_wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Tester live highlight class */
+._qa_tester_highlight {
+  outline: 3px solid #ff007f !important;
+  box-shadow: 0 0 16px rgba(255, 0, 127, 0.6) !important;
+  animation: qaPulse 1.5s infinite alternate !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+@keyframes qaPulse {
+  0% { outline-color: #ff007f; }
+  100% { outline-color: #00e5ff; }
+}
