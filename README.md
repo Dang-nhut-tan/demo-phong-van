@@ -1,6 +1,6 @@
 # VietTravel
 
-Website du lịch và quản trị tuyển dụng dùng Node.js, Express, Pug và SQLite. Dữ liệu mẫu được tự tạo ở lần chạy đầu tiên, không cần cài MongoDB hay SQL Server.
+Website du lịch và quản trị tuyển dụng dùng Node.js, Express, React Frontend, Pug SSR (cho Admin & HR) và PocketBase. Dữ liệu mẫu được tự tạo ở lần chạy đầu tiên, không cần cài MongoDB hay SQL Server.
 
 ## Chạy trên Windows
 
@@ -25,7 +25,8 @@ Sau đó mở:
 
 > Có thể cấu hình toàn bộ thông tin hai tài khoản trong `.env`: `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_FULL_NAME`, `ADMIN_PHONE`, `ADMIN_POSITION`, `HR_EMAIL`, `HR_PASSWORD`, `HR_FULL_NAME`, `HR_PHONE`, `HR_POSITION`. Mỗi lần ứng dụng khởi động, tài khoản mẫu hiện có sẽ được đồng bộ theo các giá trị này.
 
-CV được lưu tại `public/uploads/cv`; dữ liệu SQLite nằm trong `data/viettravel.sqlite`.
+CV được lưu tại `public/uploads/cv`; dữ liệu PocketBase nằm trong `pb_data`.
+PocketBase Admin: http://127.0.0.1:8091/_/ (Tài khoản: `pbadmin@viettravel.vn` / `SuperAdmin123!`).
 
 ## Triển khai demo trên Render
 

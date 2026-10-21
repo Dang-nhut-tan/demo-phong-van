@@ -75,27 +75,6 @@ export default function AuthModal() {
           </button>
         </div>
 
-        {/* Demo Quick Fill for testers! */}
-        <div className="_demoHint_banner_box">
-          <span className="_hint_title">Tài khoản thử nghiệm:</span>
-          <div className="_demoButton_row">
-            <button
-              type="button"
-              onClick={() => handleFillDemo('user')}
-              className="_btnDemo_pill"
-            >
-              Khách hàng (user@viettravel.vn)
-            </button>
-            <button
-              type="button"
-              onClick={() => handleFillDemo('admin')}
-              className="_btnDemo_pill _admin_pill"
-            >
-              Admin (admin@viettravel.vn)
-            </button>
-          </div>
-        </div>
-
         {authError && (
           <div className="_errorMessage_alert_banner">
             <span>{authError}</span>

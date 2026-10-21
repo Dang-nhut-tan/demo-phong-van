@@ -35,6 +35,17 @@ app.use(flash());
 app.locals.pathAdmin = variableConfig.pathAdmin;
 global.pathAdmin = variableConfig.pathAdmin;
 
+// Thư mục chứa file tĩnh gốc (hình ảnh, admin assets, uploads)
+app.use(express.static(path.join(__dirname, "public")));
+// CV mẫu
+app.use("/demo-cv", express.static(path.join(__dirname, "CV")));
+
+// Phục vụ Frontend React (SPA static assets)
+const reactDist = path.join(__dirname, "frontend", "dist");
+if (fs.existsSync(reactDist)) {
+  app.use(express.static(reactDist));
+}
+
 // API REST routes phục vụ React Frontend
 app.use("/api", apiRoutes);
 
@@ -43,17 +54,6 @@ app.use(`/${variableConfig.pathAdmin}`, adminRoutes);
 app.use("/hr", hrRoutes);
 // SSR Fallback nếu cần đối chiếu
 app.use("/ssr", clientRoutes);
-
-// CV mẫu
-app.use("/demo-cv", express.static(path.join(__dirname, "CV")));
-
-// Phục vụ Frontend React (SPA)
-const reactDist = path.join(__dirname, "frontend", "dist");
-if (fs.existsSync(reactDist)) {
-  app.use(express.static(reactDist));
-}
-// Thư mục chứa file tĩnh gốc (hình ảnh, uploads)
-app.use(express.static(path.join(__dirname, "public")));
 
 // SPA Catch-all: Trả về React index.html cho các route client
 if (fs.existsSync(reactDist)) {

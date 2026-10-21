@@ -7,8 +7,9 @@
     "node": ">=22.13 <25"
   },
   "scripts": {
-    "start": "node --disable-warning=ExperimentalWarning index.js",
-    "dev": "nodemon --exec \"node --disable-warning=ExperimentalWarning\" index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "pb:serve": "tools\\pocketbase\\pocketbase.exe serve --http=127.0.0.1:8091 --dir=pb_data",
     "build:client": "cd frontend && npm run build",
     "dev:client": "cd frontend && npm run dev",
     "build": "npm run build:client"
