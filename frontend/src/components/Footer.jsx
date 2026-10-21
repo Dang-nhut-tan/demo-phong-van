@@ -85,14 +85,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Automation testing tools */}
+          {/* Col 3: Customer Service */}
           <div className="_footerCol_block">
-            <h4 className="_footerHeading_title">Automation Testing</h4>
+            <h4 className="_footerHeading_title">Dịch Vụ & Hỗ Trợ</h4>
             <ul className="_footerLinks_unordered">
-              <li><Link to="/challenges">🎯 15 Thử Thách Locator Playwright</Link></li>
-              <li><Link to="/cart">Bảng dữ liệu giỏ hàng (Relative XPath)</Link></li>
-              <li><Link to="/contact">Form liên hệ (Sibling & Ancestor)</Link></li>
-              <li><Link to="/careers">Tuyển dụng (Modal & File Upload)</Link></li>
+              <li><Link to="/contact">Trung tâm chăm sóc khách hàng</Link></li>
+              <li><Link to="/cart">Kiểm tra giỏ hàng & Đơn tour</Link></li>
+              <li><Link to="/careers">Cơ hội nghề nghiệp & Tuyển dụng</Link></li>
+              <li><Link to="/contact">Chính sách bảo hiểm & Hoàn hủy</Link></li>
             </ul>
           </div>
 
@@ -134,7 +134,7 @@ export default function Footer() {
           <div className="_bottomLegal_links">
             <Link to="/contact">Điều khoản sử dụng</Link>
             <Link to="/contact">Chính sách bảo mật</Link>
-            <Link to="/challenges">Playwright Testing Lab</Link>
+            <Link to="/contact">Bảo hiểm du lịch</Link>
           </div>
         </div>
       </div>

@@ -35,10 +35,10 @@ export default function Header() {
             </span>
           </div>
           <div className="_topBar_right_group">
-            <Link to="/challenges" className="_challenge_banner_link">
-              <Sparkles size={14} className="_sparkle_icon_spin" />
-              <span className="_highlight_text">Phòng Thực Hành Locator (Playwright / XPath)</span>
-            </Link>
+            <span className="_topBar_item_pill">
+              <Sparkles size={13} className="_icon_inline" />
+              <span>Dịch vụ lữ hành quốc tế 5★</span>
+            </span>
           </div>
         </div>
       </div>
@@ -135,9 +135,6 @@ export default function Header() {
                     <hr className="_divider_hairline" />
                     <Link to="/cart" onClick={() => setIsUserMenuOpen(false)} className="_popoverItem_link">
                       Đơn tour của tôi
-                    </Link>
-                    <Link to="/challenges" onClick={() => setIsUserMenuOpen(false)} className="_popoverItem_link">
-                      Thực hành Playwright 🎯
                     </Link>
                     <button
                       type="button"

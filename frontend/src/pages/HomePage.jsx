@@ -441,26 +441,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* =========================================================================
-          PLAYWRIGHT / XPATH TESTING CALLOUT BANNER
-          ========================================================================= */}
-      <section className="_locatorLab_callout_banner">
-        <div className="_container_inner_wrap _calloutFlex_row">
-          <div className="_calloutLeft_text">
-            <span className="_labTag">PLAYWRIGHT & XPATH TESTING ARENA</span>
-            <h3>Thực Hành Bắt 15+ Locator Thách Thức</h3>
-            <p>
-              Website này được thiết kế với cấu trúc DOM thực tế: <strong>role button giả lập</strong>, <strong>text nodes bị phân tách</strong>, 
-              <strong>relative grid locator</strong> và <strong>không dùng ID tĩnh</strong> để bạn rèn luyện kỹ năng QA Automation đỉnh cao!
-            </p>
-          </div>
-          <Link to="/challenges" className="_btnLaunchLab_luxury">
-            <span>Vào Phòng Thử Thách Playwright</span>
-            <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }

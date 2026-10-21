@@ -259,7 +259,6 @@ export default function CartPage() {
                 <div className="_voucherHeader">
                   <Tag size={16} className="_tagIcon" />
                   <h4>Mã Ưu Đãi / Voucher Giảm Giá</h4>
-                  <small>(Gợi ý test: nhập <strong>VIETTRAVEL500</strong> hoặc <strong>PLAYWRIGHT</strong>)</small>
                 </div>
                 <form onSubmit={handleApplyVoucher} className="_voucherForm_inline">
                   <input
